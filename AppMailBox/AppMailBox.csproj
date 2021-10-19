@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D53CEE5F-680C-4113-AAA2-D3681D28C42A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AppMailBox</RootNamespace>
+    <AssemblyName>AppMailBox</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EAGetMail, Version=5.2.2.2, Culture=neutral, PublicKeyToken=e10a0812eb29cf94, processorArchitecture=MSIL">
+      <HintPath>..\packages\EAGetMail.5.2.2.2\lib\net461\EAGetMail.dll</HintPath>
+    </Reference>
+    <Reference Include="eCryptography, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Eramake.eCryptography.1.1.6\lib\net45\eCryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.2.2.2.1\lib\net461\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dbMailBox.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMailBox.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="fAddEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAddEmail.Designer.cs">
+      <DependentUpon>fAddEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fDangKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fDangKy.Designer.cs">
+      <DependentUpon>fDangKy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fDangNhap.Designer.cs">
+      <DependentUpon>fDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMail.Designer.cs">
+      <DependentUpon>fMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fQuenMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fQuenMatKhau.Designer.cs">
+      <DependentUpon>fQuenMatKhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fSendMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fSendMail.Designer.cs">
+      <DependentUpon>fSendMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fAddEmail.resx">
+      <DependentUpon>fAddEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fDangKy.resx">
+      <DependentUpon>fDangKy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fDangNhap.resx">
+      <DependentUpon>fDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMail.resx">
+      <DependentUpon>fMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fQuenMatKhau.resx">
+      <DependentUpon>fQuenMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fSendMail.resx">
+      <DependentUpon>fSendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="dbMailBox.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbMailBox.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbMailBox.dbml.layout">
+      <DependentUpon>dbMailBox.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="background\anh-background-cuc-dep_110341116.jpg" />
+    <Content Include="background\customer.png" />
+    <Content Include="background\document.png" />
+    <Content Include="background\hinh-nen-powerpoint-mau-xanh-27.jpg" />
+    <Content Include="background\register.png" />
+    <Content Include="icon\-.png" />
+    <Content Include="icon\add-message.png" />
+    <Content Include="icon\add.png" />
+    <Content Include="icon\align %281%29.png" />
+    <Content Include="icon\align %282%29.png" />
+    <Content Include="icon\align.png" />
+    <Content Include="icon\archive %281%29.png" />
+    <Content Include="icon\archive.png" />
+    <Content Include="icon\arrow.png" />
+    <Content Include="icon\back.png" />
+    <Content Include="icon\bgmail.ico" />
+    <Content Include="icon\bgmail.png" />
+    <Content Include="icon\blogger.png" />
+    <Content Include="icon\bold-text-option.png" />
+    <Content Include="icon\call.png" />
+    <Content Include="icon\cancel.png" />
+    <Content Include="icon\check.png" />
+    <Content Include="icon\close.png" />
+    <Content Include="icon\delete-mail.png" />
+    <Content Include="icon\delete-message.png" />
+    <Content Include="icon\delete.png" />
+    <Content Include="icon\draft %282%29.png" />
+    <Content Include="icon\edit.png" />
+    <Content Include="icon\email.png" />
+    <Content Include="icon\emailDK.png" />
+    <Content Include="icon\emailShow.png" />
+    <Content Include="icon\employees.png" />
+    <Content Include="icon\exit.png" />
+    <Content Include="icon\feedback.png" />
+    <Content Include="icon\folder.png" />
+    <Content Include="icon\forward.png" />
+    <Content Include="icon\frommail.png" />
+    <Content Include="icon\headline.png" />
+    <Content Include="icon\icons8-close-window-16.png" />
+    <Content Include="icon\icons8-delete-16.png" />
+    <Content Include="icon\icons8-email-16.png" />
+    <Content Include="icon\icons8-paper-16.png" />
+    <Content Include="icon\icons8-save-all-16.png" />
+    <Content Include="icon\id-card.png" />
+    <Content Include="icon\italic-text-option-interface-symbol.png" />
+    <Content Include="icon\job-offer.png" />
+    <Content Include="icon\justify.png" />
+    <Content Include="icon\key.png" />
+    <Content Include="icon\login.ico" />
+    <Content Include="icon\loginDN.ico" />
+    <Content Include="icon\logout.png" />
+    <Content Include="icon\luutru1.png" />
+    <Content Include="icon\mail-delete.png" />
+    <Content Include="icon\mail.ico" />
+    <Content Include="icon\mailbox.png" />
+    <Content Include="icon\new-email.png" />
+    <Content Include="icon\padlock.png" />
+    <Content Include="icon\paper-plane.png" />
+    <Content Include="icon\phone.png" />
+    <Content Include="icon\pin-number.png" />
+    <Content Include="icon\plus.png" />
+    <Content Include="icon\receive.png" />
+    <Content Include="icon\register.ico" />
+    <Content Include="icon\reply %281%29.png" />
+    <Content Include="icon\reply-all.png" />
+    <Content Include="icon\reply-message.png" />
+    <Content Include="icon\reply.png" />
+    <Content Include="icon\restore.png" />
+    <Content Include="icon\RP.png" />
+    <Content Include="icon\send %281%29.ico" />
+    <Content Include="icon\send all.png" />
+    <Content Include="icon\send-mail.png" />
+    <Content Include="icon\send.ico" />
+    <Content Include="icon\star %281%29.png" />
+    <Content Include="icon\star %282%29.png" />
+    <Content Include="icon\them.png" />
+    <Content Include="icon\tomail.png" />
+    <Content Include="icon\trash.png" />
+    <Content Include="icon\underlined-text.png" />
+    <Content Include="icon\undo.png" />
+    <Content Include="icon\update.png" />
+    <Content Include="icon\user.png" />
+    <Content Include="icon\userDK.png" />
+    <Content Include="icon\view.png" />
+    <Content Include="icon\vote.png" />
+    <Content Include="icon\warning-sign.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
