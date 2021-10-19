@@ -225,6 +225,7 @@
     <Content Include="icon\send all.png" />
     <Content Include="icon\send-mail.png" />
     <Content Include="icon\send.ico" />
+    <Content Include="icon\shared-vision.png" />
     <Content Include="icon\star %281%29.png" />
     <Content Include="icon\star %282%29.png" />
     <Content Include="icon\them.png" />

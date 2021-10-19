@@ -80,7 +80,7 @@ namespace AppMailBox
                                 client.Send(mail);
 
                                 txtPin.Enabled = true;
-                                btnAccept.Enabled = true;
+                                btnAccpect.Enabled = true;
 
                                 MessageBox.Show("Gửi mail xác nhận thành công." + Environment.NewLine + "Vui lòng nhập mã để khôi phục tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
@@ -95,43 +95,6 @@ namespace AppMailBox
             catch (Exception)
             {
                 MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        //Sự kiện xác nhận mã pin
-        private void btnAccept_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                try
-                {
-                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
-                    {
-                        int temp = 0;
-                        foreach (var item in db.THONGTIN_CLIENTs.ToList())
-                        {
-                            if (txtPin.Text == item.MAPIN.ToString())
-                            {
-                                temp = 1;
-                                txtPassword.Enabled = true;
-                                txtReEnter.Enabled = true;
-                                btnContinueStep2.Enabled = true;
-                                btnReadPw1.Enabled = true;
-                                btnReadPw2.Enabled = true;
-                                throw new Exception("Xác nhận mã pin thành công" + Environment.NewLine + "Mời qua bước 2 đặt lại mật khẩu mới!");
-                            }
-                        }
-                        if (temp == 0) throw new Exception("Mã khôi phục không chính xác!");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Something went wrong, please contact the developer!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,22 +119,6 @@ namespace AppMailBox
                     dn.ShowDialog();
                     this.Close();
                 }
-            }
-        }
-
-        //Hiển thị mật khẩu
-        private void btnReadPw1_Click(object sender, EventArgs e)
-        {
-            tempShowPass++;
-            if (tempShowPass % 2 == 0)
-            {
-                txtPassword.Password = true;
-                txtReEnter.Password = true;
-            }
-            else
-            {
-                txtPassword.Password = false;
-                txtReEnter.Password = false;
             }
         }
 
@@ -221,7 +168,7 @@ namespace AppMailBox
             }
             catch (Exception)
             {
-                MessageBox.Show("Something went wrong, please contact the developer!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -233,12 +180,65 @@ namespace AppMailBox
             txtPin.Text = "";
             txtReEnter.Text = "";
             txtPin.Enabled = false;
-            btnAccept.Enabled = false;
+            btnAccpect.Enabled = false;
             txtPassword.Enabled = false;
             btnContinueStep2.Enabled = false;
             btnReadPw1.Enabled = false;
             txtReEnter.Enabled = false;
             btnReadPw2.Enabled = false;
+        }
+
+        //Sự kiện xác nhận mã pin
+        private void btnAccpect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                    {
+                        int temp = 0;
+                        foreach (var item in db.THONGTIN_CLIENTs.ToList())
+                        {
+                            if (txtPin.Text == item.MAPIN.ToString())
+                            {
+                                temp = 1;
+                                txtPassword.Enabled = true;
+                                txtReEnter.Enabled = true;
+                                btnContinueStep2.Enabled = true;
+                                btnReadPw1.Enabled = true;
+                                btnReadPw2.Enabled = true;
+                                throw new Exception("Xác nhận mã pin thành công" + Environment.NewLine + "Mời qua bước 2 đặt lại mật khẩu mới!");
+                            }
+                        }
+                        if (temp == 0) throw new Exception("Mã khôi phục không chính xác!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Hiển thị mật khẩu
+        private void btnReadPw1_Click_1(object sender, EventArgs e)
+        {
+            tempShowPass++;
+            if (tempShowPass % 2 == 0)
+            {
+                txtPassword.Password = true;
+                txtReEnter.Password = true;
+            }
+            else
+            {
+                txtPassword.Password = false;
+                txtReEnter.Password = false;
+            }
         }
     }
 }
