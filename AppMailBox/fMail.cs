@@ -16,7 +16,8 @@ namespace AppMailBox
     public partial class fMail : Form
     {
         private int idPassLocal = 0;
-        private int idDSMail = 2;
+        private int idDSMail = 0;
+        private int tempCountLoadForm = 0;
         public fMail()
         {
             InitializeComponent();
@@ -115,7 +116,7 @@ namespace AppMailBox
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
                         foreach (var item in db.DANHSACH_MAILs.ToList())
-                            if (item.id.ToString() == row.Cells[1].Value.ToString())
+                            if (item.id.ToString() == row.Cells[0].Value.ToString())
                                 this.idDSMail = item.id;
                     }
                 }
@@ -135,67 +136,35 @@ namespace AppMailBox
                 sequence);
         }
 
-        static void downloadMailBox()
+        private void downloadMailBox(string userNameEmail, string passEmail)
         {
             try
             {
-                // Create a folder named "inbox" under current directory
-                // to save the email retrieved.
-                string localInbox = string.Format("{0}\\inbox", Directory.GetCurrentDirectory());
-                // If the folder is not existed, create it.
-                if (!Directory.Exists(localInbox))
-                {
-                    Directory.CreateDirectory(localInbox);
-                }
-
-                // Gmail IMAP4 server is "imap.gmail.com"
-                MailServer oServer = new MailServer("imap.gmail.com",
-                                "gmailid@gmail.com",
-                                "yourpassword",
-                                ServerProtocol.Imap4);
-
-                // Enable SSL connection.
+                MailServer oServer = new MailServer("imap.gmail.com", userNameEmail, passEmail, ServerProtocol.Imap4);
                 oServer.SSLConnection = true;
-
-                // Set 993 SSL port
                 oServer.Port = 993;
 
                 MailClient oClient = new MailClient("TryIt");
                 oClient.Connect(oServer);
 
                 MailInfo[] infos = oClient.GetMailInfos();
-                Console.WriteLine("Total {0} email(s)\r\n", infos.Length);
-                for (int i = 0; i < infos.Length; i++)
+                lTotal.Text = infos.Length.ToString();
+                for (int i = 0; i < 100; i++)
                 {
                     MailInfo info = infos[i];
-                    Console.WriteLine("Index: {0}; Size: {1}; UIDL: {2}",
-                        info.Index, info.Size, info.UIDL);
-
-                    // Receive email from IMAP4 server
                     Mail oMail = oClient.GetMail(info);
 
-                    Console.WriteLine("From: {0}", oMail.From.ToString());
-                    Console.WriteLine("Subject: {0}\r\n", oMail.Subject);
-
-                    // Generate an unqiue email file name based on date time.
-                    string fileName = _generateFileName(i + 1);
-                    string fullPath = string.Format("{0}\\{1}", localInbox, fileName);
-
-                    // Save email to local disk
-                    oMail.SaveAs(fullPath, true);
-
-                    // Mark email as deleted from IMAP4 server.
-                    oClient.Delete(info);
+                    int index = dgvListMail.Rows.Add();
+                    dgvListMail.Rows[index].Cells[0].Value = info.Index;
+                    dgvListMail.Rows[index].Cells[1].Value = oMail.From.ToString();
+                    dgvListMail.Rows[index].Cells[2].Value = oMail.Subject;
+                    dgvListMail.Rows[index].Cells[3].Value = oMail.BodyHeaders;
                 }
-
-                // Quit and expunge emails marked as deleted from IMAP4 server.
                 oClient.Quit();
-                Console.WriteLine("Completed!");
             }
-            catch (Exception)
+            catch (Exception ep)
             {
-
-                throw;
+                Console.WriteLine(ep.Message);
             }
         }
 
@@ -209,12 +178,31 @@ namespace AppMailBox
                 fLogin.ShowDialog();
                 this.Close();
             }
+            if (this.tempCountLoadForm == 0)
+            {
+                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                {
+                    foreach (var item in db.MATKHAU_MAILs.ToList())
+                    {
+                        if (item.USERNAME_MAIL == cmbEmail.Text)
+                        {
+                            downloadMailBox(item.USERNAME_MAIL, item.PASSWORD_MAIL);
+                            this.tempCountLoadForm++;
+                        }
+                    }
+                }
+            }
         }
 
 
 
 
         private void btnInbox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSendAll_Click(object sender, EventArgs e)
         {
 
         }
