@@ -50,14 +50,14 @@ namespace AppMailBox
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
                         //Mail nháp
-                        if (item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == true && item.NOIDUNG_MAIL.id == this.idDSMail)
+                        if (item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == true && item.id == this.idDSMail)
                         {
                             if (cmbEmail.Text == item.MATKHAU_MAIL.USERNAME_MAIL.ToString())
                             {
                                 temp = 1;
                                 fSendMail fsm = new fSendMail(item.MATKHAU_MAIL.DOMAIN_MAIL.DOMAIN, item.MATKHAU_MAIL.DOMAIN_MAIL.PORT_MAIL,
                                                             item.MATKHAU_MAIL.USERNAME_MAIL, item.MATKHAU_MAIL.PASSWORD_MAIL,
-                                                            item.MATKHAU_MAIL.id, item.NOIDUNG_MAIL.id, this.idPassLocal);
+                                                            item.NOIDUNG_MAIL.id, this.idPassLocal, 1);
                                 this.Hide();
                                 fsm.ShowDialog();
                                 this.Close();
@@ -349,60 +349,63 @@ namespace AppMailBox
                     MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            dgvListMail.Rows.Clear();
-            btnDeleteAll.Enabled = false;
-            btnRecovery.Enabled = false;
-
-            btnInbox.BackColor = Color.LimeGreen;
-            btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
-            btnAllMail.BackColor = Color.FromArgb(238, 26, 74);
-            btnStarred.BackColor = Color.FromArgb(238, 26, 74);
-            btnDrafts.BackColor = Color.FromArgb(238, 26, 74);
-            btnGarbageCan.BackColor = Color.FromArgb(238, 26, 74);
-
-            btnInbox.FlatStyle = FlatStyle.Standard;
-            btnOutbox.FlatStyle = FlatStyle.Popup;
-            btnAllMail.FlatStyle = FlatStyle.Popup;
-            btnStarred.FlatStyle = FlatStyle.Popup;
-            btnDrafts.FlatStyle = FlatStyle.Popup;
-            btnGarbageCan.FlatStyle = FlatStyle.Popup;
-
-            try
+            else
             {
-                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                dgvListMail.Rows.Clear();
+                btnDeleteAll.Enabled = false;
+                btnRecovery.Enabled = false;
+             
+                btnInbox.BackColor = Color.LimeGreen;
+                btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
+                btnAllMail.BackColor = Color.FromArgb(238, 26, 74);
+                btnStarred.BackColor = Color.FromArgb(238, 26, 74);
+                btnDrafts.BackColor = Color.FromArgb(238, 26, 74);
+                btnGarbageCan.BackColor = Color.FromArgb(238, 26, 74);
+
+                btnInbox.FlatStyle = FlatStyle.Standard;
+                btnOutbox.FlatStyle = FlatStyle.Popup;
+                btnAllMail.FlatStyle = FlatStyle.Popup;
+                btnStarred.FlatStyle = FlatStyle.Popup;
+                btnDrafts.FlatStyle = FlatStyle.Popup;
+                btnGarbageCan.FlatStyle = FlatStyle.Popup;
+
+                try
                 {
-                    foreach (var item in db.DANHSACH_MAILs.ToList())
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
-                            && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == true
-                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
-                            && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false
-                            && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
+                        foreach (var item in db.DANHSACH_MAILs.ToList())
                         {
-                            int index = dgvListMail.Rows.Add();
-                            dgvListMail.Rows[index].Cells[0].Value = item.id;
-                            dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
-                            dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
+                                && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == true
+                                && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
+                                && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false
+                                && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
+                            {
+                                int index = dgvListMail.Rows.Add();
+                                dgvListMail.Rows[index].Cells[0].Value = item.id;
+                                dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
+                                dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
+                                //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            }
                         }
+                        this.dgvListMail.Sort(this.dgvListMail.Columns[0], ListSortDirection.Descending);
                     }
-                    this.dgvListMail.Sort(this.dgvListMail.Columns[0], ListSortDirection.Descending);
+                    int countMail = dgvListMail.Rows.Count - 1;
+                    lTotal.Text = "Total: " + countMail.ToString() + " email.";
                 }
-                int countMail = dgvListMail.Rows.Count - 1;
-                lTotal.Text = "Total: " + countMail.ToString() + " email.";
+                catch (Exception)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         //Chọn tài khoản email
         private void cmbEmail_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnDeleteAll.Enabled = false;
+            btnRecovery.Enabled = false;
+            this.savaLocal = "Inbox";
 
             btnInbox.BackColor = Color.LimeGreen;
             btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -725,9 +728,7 @@ namespace AppMailBox
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
                         if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
-                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
-                            && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false
-                            && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false)
+                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true)
                         {
                             int index = dgvListMail.Rows.Add();
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
@@ -775,43 +776,176 @@ namespace AppMailBox
         //Cập nhật sự kiện xóa
         private void btnDeleteMail_Click(object sender, EventArgs e)
         {
-            using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+            try
             {
-                TRANG_THAI statusMail = new TRANG_THAI();
-
-                foreach (var item in db.DANHSACH_MAILs.ToList())
+                try
                 {
-                    if (item.id == this.idDSMail)
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
-                        statusMail.XOATHU = true;
-                        statusMail.DANHDAU = false;
-                        db.SubmitChanges();
+                        TRANG_THAI statusMail = new TRANG_THAI();
+                        int temp = 0;
+                        foreach (var item in db.DANHSACH_MAILs.ToList())
+                        {
+                            if (item.id == this.idDSMail && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false)
+                            {
+                                statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
+                                statusMail.XOATHU = true;
+                                statusMail.DANHDAU = false;
+                                db.SubmitChanges();
+                                loadLocalButton(sender, e);
+                                temp = 0;
+                                break;
+                            }
+                            else if (item.id == this.idDSMail && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true) temp = 1;
+                        }
+                        if (temp == 1)
+                        {
+                            throw new Exception("Thư này đã được xóa.");
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            loadLocalButton(sender, e);
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //Sự kiện đánh dấu thư
         private void btnArchiveMail_Click(object sender, EventArgs e)
         {
-            using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+            try
             {
-                TRANG_THAI statusMail = new TRANG_THAI();
-
-                foreach (var item in db.DANHSACH_MAILs.ToList())
+                try
                 {
-                    if (item.id == this.idDSMail
-                        && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false)
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
-                        statusMail.DANHDAU = true;
-                        db.SubmitChanges();
+                        TRANG_THAI statusMail = new TRANG_THAI();
+
+                        int temp = 0;
+                        foreach (var item in db.DANHSACH_MAILs.ToList())
+                        {
+                            if (item.id == this.idDSMail
+                                && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
+                                && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
+                            {
+                                statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
+                                statusMail.DANHDAU = true;
+                                db.SubmitChanges();
+                                loadLocalButton(sender, e);
+                                temp = 0;
+                                break;
+                            }
+                            if (item.id == this.idDSMail
+                                && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true)
+                            {
+                                temp = 1;
+                                break;
+                            }
+                            if (item.id == this.idDSMail
+                                && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == true)
+                            {
+                                temp = 2;
+                                break;
+                            }
+                            if (item.id == this.idDSMail
+                                && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == true)
+                            {
+                                temp = 3;
+                                break;
+                            }
+                        }
+                        if (temp == 1)
+                            throw new Exception("Không được phép đánh dấu thư đã xóa");
+                        else if (temp == 2)
+                            throw new Exception("Không được phép đánh dấu thư nháp");
+                        else if (temp == 3)
+                            throw new Exception("Thư này đã được đánh đấu");
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            loadLocalButton(sender, e);
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Sự kiện hoàn nguên
+        private void btnBack_Click(object sender, EventArgs e)
+        {          
+            if (this.savaLocal == "Starred")
+            {
+                try
+                {
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                    {
+                        TRANG_THAI statusMail = new TRANG_THAI();
+                        foreach (var item in db.DANHSACH_MAILs.ToList())
+                        {
+                            if (item.id == this.idDSMail
+                                && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == true)
+                            {
+                                statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
+                                statusMail.DANHDAU = false;
+                                db.SubmitChanges();
+                                loadLocalButton(sender, e);     
+                                break;
+                            } 
+                        }
+                        btnStarred_Click(sender, e);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                MessageBox.Show("Revert starred chỉ hỗ trợ cho thư đánh dấu sao.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        //Sự kiện trả lời mail
+        private void btnReplyMail_Click(object sender, EventArgs e)
+        {
+            if (this.savaLocal == "Inbox")
+            {
+                try
+                {
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                    {
+                        foreach (var item in db.DANHSACH_MAILs.ToList())
+                        {
+                            if (cmbEmail.Text == item.MATKHAU_MAIL.USERNAME_MAIL.ToString() && item.id == this.idDSMail)
+                            {
+                                fSendMail fsm = new fSendMail(item.MATKHAU_MAIL.DOMAIN_MAIL.DOMAIN, item.MATKHAU_MAIL.DOMAIN_MAIL.PORT_MAIL,
+                                                            item.MATKHAU_MAIL.USERNAME_MAIL, item.MATKHAU_MAIL.PASSWORD_MAIL,
+                                                            item.NOIDUNG_MAIL.id, this.idPassLocal, 2);
+                                this.Hide();
+                                fsm.ShowDialog();
+                                this.Close();
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                MessageBox.Show("Reply mail chỉ hổ trợ cho thư gửi đến", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
         }
     }
 }

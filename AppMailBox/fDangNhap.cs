@@ -87,6 +87,7 @@ namespace AppMailBox
                                         this.Hide();
                                         fSM.ShowDialog();
                                         this.Close();
+                                        break;
                                     }
                                 }
                             }

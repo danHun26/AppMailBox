@@ -256,37 +256,7 @@
   <metadata name="tabControl1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="tabControl1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="tabHome.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="tabAccount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="tabHelp.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="tabHome.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnSendReceive.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnBack.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnReplyMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnArchiveMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnDeleteMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnNewMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="btnSendReceive.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -355,15 +325,27 @@
   </metadata>
   <data name="btnArchiveMail.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
+        LykAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="btnDeleteMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -436,6 +418,18 @@
   <metadata name="btnEdit.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="tabHelp.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnVersion.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnContact.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnReport.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="btnLogOut.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -495,18 +489,6 @@
         n+/z9eWNHTooxtoSn/J65yqSJH1l9jLfUIy1Ja61pVLQ1FKC8AOGcM4/H+UqswAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="tabHelp.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnVersion.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnContact.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnReport.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="btnVersion.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -592,22 +574,7 @@
   <metadata name="dgvListMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="drvID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="drvTo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="drvSubject.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="panel5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnRecovery.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnDeleteAll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="btnRecovery.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -667,6 +634,36 @@
         QmCC
 </value>
   </data>
+  <metadata name="panel5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnRecovery.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="btnDeleteAll.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dgvListMail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="drvID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="drvTo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="drvSubject.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="drvID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="drvTo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="drvSubject.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

@@ -49,16 +49,15 @@ namespace AppMailBox
 
         ////Constructor có tham số mở mail nháp
         public fSendMail(string serverMail, int portServerMail, string userMailAcc,
-            string passMailAcc, int idpassMail, int idTempMail, int idPassLocal) : this()
+            string passMailAcc, int idTempMail, int idPassLocal, int classifyMail) : this()
         {
             this.serverMail = serverMail;
             this.portServerMail = portServerMail;
             this.userMailAcc = userMailAcc;
-            this.passMailAcc = passMailAcc;
             this.passMailAcc = Eramake.eCryptography.Decrypt(passMailAcc);
             this.idTempMail = idTempMail;
             this.idPassLocal = idPassLocal;
-            this.classifyMail = 1;
+            this.classifyMail = classifyMail;
         }
 
         //bấm nút gửi thư
@@ -435,52 +434,75 @@ namespace AppMailBox
         //Load form
         private void fSendMail_Load(object sender, EventArgs e)
         {
-            if (this.classifyMail == 0)
+            try
             {
-                txtFromMail.Text = this.userMailAcc;
-                txtIdentification.Text = "File: ";
-                txtPathAttach.Text = "";
-                txtSubjectMail.Text = "";
-                txtToMail.Text = "";
-                rTxtContent.Text = "";
-            }
-            else
-            {
-                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                if (this.classifyMail == 0)
                 {
-                    string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
-                    foreach (var item in db.NOIDUNG_MAILs.ToList())
+                    txtFromMail.Text = this.userMailAcc;
+                    txtIdentification.Text = "File: ";
+                    txtPathAttach.Text = "";
+                    txtSubjectMail.Text = "";
+                    txtToMail.Text = "";
+                    rTxtContent.Text = "";
+                }
+                else if (this.classifyMail == 1)
+                {
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        if (item.id == this.idTempMail)
+                        string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                        foreach (var item in db.NOIDUNG_MAILs.ToList())
                         {
-                            txtFromMail.Text = item.FROM_MAIL;
-                            txtToMail.Text = item.TO_MAIL.ToLower();
-                            txtSubjectMail.Text = item.SUBJECT_MAIL;
-                            rTxtContent.Text = File.ReadAllText($"{localData}\\{item.CONTENT_MAIL}", Encoding.UTF8);
-                            txtPathAttach.Text = item.PATH_ATTACH;
-
-                            if (txtPathAttach.Text.Contains(".png") || txtPathAttach.Text.Contains(".jpg") || txtPathAttach.Text.Contains(".jpeg"))
+                            if (item.id == this.idTempMail)
                             {
-                                if (txtPathAttach.Text.Contains(".png"))
-                                    txtIdentification.Text = "File: RAW";
-                                else if (txtPathAttach.Text.Contains(".jpg") || txtPathAttach.Text.Contains(".jpeg"))
-                                    txtIdentification.Text = "File: PICTURE";
+                                txtFromMail.Text = item.FROM_MAIL;
+                                txtToMail.Text = item.TO_MAIL.ToLower();
+                                txtSubjectMail.Text = item.SUBJECT_MAIL;
+                                rTxtContent.Text = File.ReadAllText($"{localData}\\{item.CONTENT_MAIL}", Encoding.UTF8);
+                                txtPathAttach.Text = item.PATH_ATTACH;
+
+                                if (txtPathAttach.Text.Contains(".png") || txtPathAttach.Text.Contains(".jpg") || txtPathAttach.Text.Contains(".jpeg"))
+                                {
+                                    if (txtPathAttach.Text.Contains(".png"))
+                                        txtIdentification.Text = "File: RAW";
+                                    else if (txtPathAttach.Text.Contains(".jpg") || txtPathAttach.Text.Contains(".jpeg"))
+                                        txtIdentification.Text = "File: PICTURE";
+                                }
+                                else if (txtPathAttach.Text.Contains(".doc") || txtPathAttach.Text.Contains(".docx"))
+                                    txtIdentification.Text = "File: WORD";
+                                else if (txtPathAttach.Text.Contains(".xls") || txtPathAttach.Text.Contains(".xlsx") || txtPathAttach.Text.Contains(".xlsm"))
+                                    txtIdentification.Text = "File: EXCEL";
+                                else if (txtPathAttach.Text.Contains(".pptx"))
+                                    txtIdentification.Text = "File: POWER PORINT";
+                                else if (txtPathAttach.Text.Contains(".pdf"))
+                                    txtIdentification.Text = "File: PDF ";
+                                else if (txtPathAttach.Text.Contains(".txt"))
+                                    txtIdentification.Text = "File: TEXT";
+                                else
+                                    txtIdentification.Text = "File: OTHER";
                             }
-                            else if (txtPathAttach.Text.Contains(".doc") || txtPathAttach.Text.Contains(".docx"))
-                                txtIdentification.Text = "File: WORD";
-                            else if (txtPathAttach.Text.Contains(".xls") || txtPathAttach.Text.Contains(".xlsx") || txtPathAttach.Text.Contains(".xlsm"))
-                                txtIdentification.Text = "File: EXCEL";
-                            else if (txtPathAttach.Text.Contains(".pptx"))
-                                txtIdentification.Text = "File: POWER PORINT";
-                            else if (txtPathAttach.Text.Contains(".pdf"))
-                                txtIdentification.Text = "File: PDF ";
-                            else if (txtPathAttach.Text.Contains(".txt"))
-                                txtIdentification.Text = "File: TEXT";
-                            else
-                                txtIdentification.Text = "File: OTHER";
                         }
                     }
                 }
+                else if (this.classifyMail == 2)
+                {
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                    {
+                        foreach (var item in db.NOIDUNG_MAILs.ToList())
+                        {
+                            if (item.id == this.idTempMail)
+                            {
+                                txtFromMail.Text = item.FROM_MAIL;
+                                txtToMail.Text = item.TO_MAIL.ToLower();
+                                txtSubjectMail.Text = item.SUBJECT_MAIL;
+                                rTxtContent.Text = "";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
