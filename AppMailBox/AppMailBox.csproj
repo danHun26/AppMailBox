@@ -182,6 +182,7 @@
     <Content Include="icon\cancel.png" />
     <Content Include="icon\check.png" />
     <Content Include="icon\close.png" />
+    <Content Include="icon\data-recovery.png" />
     <Content Include="icon\delete %282%29.png" />
     <Content Include="icon\delete-mail.png" />
     <Content Include="icon\delete-message.png" />

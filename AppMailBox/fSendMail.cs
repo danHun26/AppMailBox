@@ -24,6 +24,7 @@ namespace AppMailBox
         private int idTempMail = 0;
         private int classifyMail = 0;
         private int idPassLocal = 0;
+        private string tempSub = "(Không có tiêu đề)";
 
         //Di chuyển form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -74,7 +75,11 @@ namespace AppMailBox
                     if (Regex.IsMatch(txtToMail.Text, pattern) == false)
                         throw new Exception("Định dạng email gửi không đúng.");
 
-                    MailMessage mail = new MailMessage(this.userMailAcc, txtToMail.Text.ToLower(), txtSubjectMail.Text, rTxtContent.Text);
+                    if(txtSubjectMail.Text != "")
+                    {
+                        tempSub = txtSubjectMail.Text;
+                    }
+                    MailMessage mail = new MailMessage(this.userMailAcc, txtToMail.Text.ToLower(), tempSub, rTxtContent.Text);
                     mail.IsBodyHtml = true;
                     if (File.Exists(txtPathAttach.Text))
                     {
@@ -123,7 +128,7 @@ namespace AppMailBox
                             //NỘI DUNG MAIL
                             ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
                             ndMail.TO_MAIL = txtToMail.Text.ToLower();
-                            ndMail.SUBJECT_MAIL = txtSubjectMail.Text;
+                            ndMail.SUBJECT_MAIL = tempSub;
 
                             int tempidContent = 0;
                             foreach (var item in db.NOIDUNG_MAILs.ToList())
@@ -182,7 +187,7 @@ namespace AppMailBox
                             ndMail.TRANG_THAI.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
                             dsMail.THOIGIAN_GUI = DateTime.Now.ToLocalTime();
                             ndMail.TO_MAIL = txtToMail.Text.ToLower();
-                            ndMail.SUBJECT_MAIL = txtSubjectMail.Text;
+                            ndMail.SUBJECT_MAIL = tempSub;
                             //Tạo nơi chứa
                             string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
                             if (!Directory.Exists(localData))
@@ -232,7 +237,7 @@ namespace AppMailBox
         //Thoát soạn mail
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (txtPathAttach.Text == "" && txtSubjectMail.Text == "" && txtToMail.Text == "" && rTxtContent.Text == "")
+            if (txtPathAttach.Text == "" && txtToMail.Text == "" && rTxtContent.Text == "")
             {
                 fMail fSM = new fMail(this.userMailAcc, this.idPassLocal);
                 this.Hide();
@@ -291,7 +296,7 @@ namespace AppMailBox
                     //NỘI DUNG MAIL
                     ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
                     ndMail.TO_MAIL = txtToMail.Text.ToLower();
-                    ndMail.SUBJECT_MAIL = txtSubjectMail.Text;
+                    ndMail.SUBJECT_MAIL = tempSub;
 
                     int tempidContent = 0;
                     foreach (var item in db.NOIDUNG_MAILs.ToList())

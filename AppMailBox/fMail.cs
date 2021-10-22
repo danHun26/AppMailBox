@@ -127,11 +127,6 @@ namespace AppMailBox
             }
         }
 
-        private static Encoding GetUTF8()
-        {
-            return Encoding.UTF8;
-        }
-
         //Hàm tải thư xuống
         private void DownloadMailBox(string userNameEmail, string passEmail)
         {
@@ -337,6 +332,7 @@ namespace AppMailBox
             {
                 dgvListMail.Rows.Clear();
                 btnDeleteAll.Enabled = false;
+                btnRecovery.Enabled = false;
 
                 btnInbox.BackColor = Color.LimeGreen;
                 btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -472,6 +468,7 @@ namespace AppMailBox
         private void btnOutbox_Click(object sender, EventArgs e)
         {
             btnDeleteAll.Enabled = false;
+            btnRecovery.Enabled = false;
             this.savaLocal = "Outbox";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -524,6 +521,7 @@ namespace AppMailBox
         private void btnAllMail_Click(object sender, EventArgs e)
         {
             btnDeleteAll.Enabled = false;
+            btnRecovery.Enabled = false;
             this.savaLocal = "AllMail";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -575,6 +573,7 @@ namespace AppMailBox
         private void btnStarred_Click(object sender, EventArgs e)
         {
             btnDeleteAll.Enabled = false;
+            btnRecovery.Enabled = false;
             this.savaLocal = "Starred";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -626,6 +625,7 @@ namespace AppMailBox
         private void btnDrafts_Click(object sender, EventArgs e)
         {
             btnDeleteAll.Enabled = false;
+            btnRecovery.Enabled = false;
             this.savaLocal = "Drafts";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -679,6 +679,7 @@ namespace AppMailBox
         private void btnGarbageCan_Click(object sender, EventArgs e)
         {
             btnDeleteAll.Enabled = true;
+            btnRecovery.Enabled = true;
             this.savaLocal = "GarbageCan";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -771,6 +772,7 @@ namespace AppMailBox
             }
             loadLocalButton(sender, e);
         }
+
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
