@@ -38,6 +38,8 @@ namespace AppMailBox
             this.btnInbox = new System.Windows.Forms.Button();
             this.cmbEmail = new MaterialSkin.Controls.MaterialComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAddEmail = new System.Windows.Forms.Button();
+            this.lTotal = new MaterialSkin.Controls.MaterialLabel();
             this.btnContact = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -61,17 +63,17 @@ namespace AppMailBox
             this.tabHelp = new System.Windows.Forms.TabPage();
             this.btnReport = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.wbMail = new System.Windows.Forms.WebBrowser();
             this.dtpMail = new System.Windows.Forms.DateTimePicker();
-            this.rtxtBodyMail = new System.Windows.Forms.RichTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDeleteAll = new System.Windows.Forms.Button();
             this.dgvListMail = new System.Windows.Forms.DataGridView();
             this.drvID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.drvTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.drvSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.drvContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddEmail = new System.Windows.Forms.Button();
-            this.lTotal = new MaterialSkin.Controls.MaterialLabel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -90,16 +92,18 @@ namespace AppMailBox
             this.btnGarbageCan.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGarbageCan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGarbageCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGarbageCan.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnGarbageCan.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnGarbageCan.Image = ((System.Drawing.Image)(resources.GetObject("btnGarbageCan.Image")));
             this.btnGarbageCan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGarbageCan.Location = new System.Drawing.Point(0, 224);
+            this.btnGarbageCan.Location = new System.Drawing.Point(0, 249);
             this.btnGarbageCan.Name = "btnGarbageCan";
-            this.btnGarbageCan.Size = new System.Drawing.Size(259, 35);
+            this.btnGarbageCan.Size = new System.Drawing.Size(259, 40);
             this.btnGarbageCan.TabIndex = 14;
             this.btnGarbageCan.Text = "Garbage can";
             this.btnGarbageCan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGarbageCan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGarbageCan.UseVisualStyleBackColor = false;
+            this.btnGarbageCan.Click += new System.EventHandler(this.btnGarbageCan_Click);
             // 
             // btnDrafts
             // 
@@ -107,16 +111,18 @@ namespace AppMailBox
             this.btnDrafts.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDrafts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDrafts.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDrafts.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDrafts.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnDrafts.Image = ((System.Drawing.Image)(resources.GetObject("btnDrafts.Image")));
             this.btnDrafts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDrafts.Location = new System.Drawing.Point(0, 189);
+            this.btnDrafts.Location = new System.Drawing.Point(0, 209);
             this.btnDrafts.Name = "btnDrafts";
-            this.btnDrafts.Size = new System.Drawing.Size(259, 35);
+            this.btnDrafts.Size = new System.Drawing.Size(259, 40);
             this.btnDrafts.TabIndex = 13;
             this.btnDrafts.Text = "Drafts";
             this.btnDrafts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDrafts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDrafts.UseVisualStyleBackColor = false;
+            this.btnDrafts.Click += new System.EventHandler(this.btnDrafts_Click);
             // 
             // btnStarred
             // 
@@ -124,16 +130,18 @@ namespace AppMailBox
             this.btnStarred.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStarred.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnStarred.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStarred.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnStarred.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnStarred.Image = ((System.Drawing.Image)(resources.GetObject("btnStarred.Image")));
             this.btnStarred.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStarred.Location = new System.Drawing.Point(0, 154);
+            this.btnStarred.Location = new System.Drawing.Point(0, 169);
             this.btnStarred.Name = "btnStarred";
-            this.btnStarred.Size = new System.Drawing.Size(259, 35);
+            this.btnStarred.Size = new System.Drawing.Size(259, 40);
             this.btnStarred.TabIndex = 12;
             this.btnStarred.Text = "Starred";
             this.btnStarred.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStarred.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStarred.UseVisualStyleBackColor = false;
+            this.btnStarred.Click += new System.EventHandler(this.btnStarred_Click);
             // 
             // btnAllMail
             // 
@@ -141,16 +149,18 @@ namespace AppMailBox
             this.btnAllMail.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAllMail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAllMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAllMail.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAllMail.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnAllMail.Image = ((System.Drawing.Image)(resources.GetObject("btnAllMail.Image")));
             this.btnAllMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAllMail.Location = new System.Drawing.Point(0, 119);
+            this.btnAllMail.Location = new System.Drawing.Point(0, 129);
             this.btnAllMail.Name = "btnAllMail";
-            this.btnAllMail.Size = new System.Drawing.Size(259, 35);
+            this.btnAllMail.Size = new System.Drawing.Size(259, 40);
             this.btnAllMail.TabIndex = 11;
             this.btnAllMail.Text = "All mail";
             this.btnAllMail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAllMail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAllMail.UseVisualStyleBackColor = false;
+            this.btnAllMail.Click += new System.EventHandler(this.btnAllMail_Click);
             // 
             // btnOutbox
             // 
@@ -158,16 +168,18 @@ namespace AppMailBox
             this.btnOutbox.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnOutbox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOutbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOutbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnOutbox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnOutbox.Image = ((System.Drawing.Image)(resources.GetObject("btnOutbox.Image")));
             this.btnOutbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOutbox.Location = new System.Drawing.Point(0, 84);
+            this.btnOutbox.Location = new System.Drawing.Point(0, 89);
             this.btnOutbox.Name = "btnOutbox";
-            this.btnOutbox.Size = new System.Drawing.Size(259, 35);
+            this.btnOutbox.Size = new System.Drawing.Size(259, 40);
             this.btnOutbox.TabIndex = 10;
             this.btnOutbox.Text = "Outbox";
             this.btnOutbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOutbox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOutbox.UseVisualStyleBackColor = false;
+            this.btnOutbox.Click += new System.EventHandler(this.btnOutbox_Click);
             // 
             // btnInbox
             // 
@@ -175,11 +187,12 @@ namespace AppMailBox
             this.btnInbox.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnInbox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnInbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnInbox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnInbox.Image = ((System.Drawing.Image)(resources.GetObject("btnInbox.Image")));
             this.btnInbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInbox.Location = new System.Drawing.Point(0, 49);
             this.btnInbox.Name = "btnInbox";
-            this.btnInbox.Size = new System.Drawing.Size(259, 35);
+            this.btnInbox.Size = new System.Drawing.Size(259, 40);
             this.btnInbox.TabIndex = 9;
             this.btnInbox.Text = "Inbox";
             this.btnInbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,8 +216,9 @@ namespace AppMailBox
             this.cmbEmail.IntegralHeight = false;
             this.cmbEmail.ItemHeight = 43;
             this.cmbEmail.Items.AddRange(new object[] {
+            "jamk1126@gmail.com",
             "atgjbmagic@gmail.com",
-            "jamk1126@gmail.com"});
+            "kurokuro12344@gmail.com"});
             this.cmbEmail.Location = new System.Drawing.Point(0, 0);
             this.cmbEmail.MaxDropDownItems = 4;
             this.cmbEmail.MouseState = MaterialSkin.MouseState.OUT;
@@ -212,11 +226,11 @@ namespace AppMailBox
             this.cmbEmail.Size = new System.Drawing.Size(259, 49);
             this.cmbEmail.StartIndex = 0;
             this.cmbEmail.TabIndex = 8;
+            this.cmbEmail.SelectedIndexChanged += new System.EventHandler(this.cmbEmail_SelectedIndexChanged);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.lTotal);
             this.panel2.Controls.Add(this.btnAddEmail);
             this.panel2.Controls.Add(this.btnGarbageCan);
             this.panel2.Controls.Add(this.btnDrafts);
@@ -231,6 +245,31 @@ namespace AppMailBox
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(261, 475);
             this.panel2.TabIndex = 5;
+            // 
+            // btnAddEmail
+            // 
+            this.btnAddEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
+            this.btnAddEmail.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAddEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddEmail.Image = ((System.Drawing.Image)(resources.GetObject("btnAddEmail.Image")));
+            this.btnAddEmail.Location = new System.Drawing.Point(0, 438);
+            this.btnAddEmail.Name = "btnAddEmail";
+            this.btnAddEmail.Size = new System.Drawing.Size(259, 35);
+            this.btnAddEmail.TabIndex = 16;
+            this.btnAddEmail.UseVisualStyleBackColor = false;
+            this.btnAddEmail.Click += new System.EventHandler(this.btnAddEmail_Click);
+            // 
+            // lTotal
+            // 
+            this.lTotal.AutoSize = true;
+            this.lTotal.Depth = 0;
+            this.lTotal.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lTotal.Location = new System.Drawing.Point(6, 445);
+            this.lTotal.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lTotal.Name = "lTotal";
+            this.lTotal.Size = new System.Drawing.Size(42, 19);
+            this.lTotal.TabIndex = 17;
+            this.lTotal.Text = "Total:";
             // 
             // btnContact
             // 
@@ -354,6 +393,7 @@ namespace AppMailBox
             this.btnDeleteMail.TabIndex = 2;
             this.btnDeleteMail.Text = "Delete Mail";
             this.btnDeleteMail.UseVisualStyleBackColor = true;
+            this.btnDeleteMail.Click += new System.EventHandler(this.btnDeleteMail_Click);
             // 
             // btnNewMail
             // 
@@ -404,7 +444,6 @@ namespace AppMailBox
             this.btnSendAll.TabIndex = 2;
             this.btnSendAll.Text = "Send All";
             this.btnSendAll.UseVisualStyleBackColor = true;
-            this.btnSendAll.Click += new System.EventHandler(this.btnSendAll_Click);
             // 
             // btnCancelAll
             // 
@@ -430,6 +469,7 @@ namespace AppMailBox
             this.btnSendReceive.TabIndex = 1;
             this.btnSendReceive.Text = "Send / Receive All Folder";
             this.btnSendReceive.UseVisualStyleBackColor = false;
+            this.btnSendReceive.Click += new System.EventHandler(this.btnSendReceive_Click);
             // 
             // tabAccount
             // 
@@ -504,14 +544,23 @@ namespace AppMailBox
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.wbMail);
             this.panel3.Controls.Add(this.dtpMail);
-            this.panel3.Controls.Add(this.rtxtBodyMail);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(757, 86);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(327, 475);
             this.panel3.TabIndex = 8;
+            // 
+            // wbMail
+            // 
+            this.wbMail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wbMail.Location = new System.Drawing.Point(0, 20);
+            this.wbMail.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbMail.Name = "wbMail";
+            this.wbMail.Size = new System.Drawing.Size(327, 381);
+            this.wbMail.TabIndex = 17;
             // 
             // dtpMail
             // 
@@ -521,17 +570,6 @@ namespace AppMailBox
             this.dtpMail.Name = "dtpMail";
             this.dtpMail.Size = new System.Drawing.Size(327, 20);
             this.dtpMail.TabIndex = 16;
-            // 
-            // rtxtBodyMail
-            // 
-            this.rtxtBodyMail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtxtBodyMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtBodyMail.Location = new System.Drawing.Point(0, 0);
-            this.rtxtBodyMail.Name = "rtxtBodyMail";
-            this.rtxtBodyMail.ReadOnly = true;
-            this.rtxtBodyMail.Size = new System.Drawing.Size(327, 401);
-            this.rtxtBodyMail.TabIndex = 15;
-            this.rtxtBodyMail.Text = "";
             // 
             // panel5
             // 
@@ -544,12 +582,52 @@ namespace AppMailBox
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.btnDeleteAll);
+            this.panel4.Controls.Add(this.lTotal);
             this.panel4.Controls.Add(this.dgvListMail);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(261, 86);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(496, 475);
             this.panel4.TabIndex = 9;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(375, 432);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 40);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Delete all";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.BackColor = System.Drawing.Color.Maroon;
+            this.btnDeleteAll.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDeleteAll.Enabled = false;
+            this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeleteAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteAll.Image")));
+            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteAll.Location = new System.Drawing.Point(254, 432);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(115, 40);
+            this.btnDeleteAll.TabIndex = 18;
+            this.btnDeleteAll.Text = "Delete all";
+            this.btnDeleteAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteAll.UseVisualStyleBackColor = false;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
             // 
             // dgvListMail
             // 
@@ -560,17 +638,19 @@ namespace AppMailBox
             this.drvTo,
             this.drvSubject,
             this.drvContent});
-            this.dgvListMail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvListMail.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvListMail.Location = new System.Drawing.Point(0, 0);
             this.dgvListMail.Name = "dgvListMail";
-            this.dgvListMail.Size = new System.Drawing.Size(496, 475);
+            this.dgvListMail.Size = new System.Drawing.Size(496, 426);
             this.dgvListMail.TabIndex = 15;
+            this.dgvListMail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListMail_CellClick);
             // 
             // drvID
             // 
-            this.drvID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.drvID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.drvID.HeaderText = "ID";
             this.drvID.Name = "drvID";
+            this.drvID.Width = 43;
             // 
             // drvTo
             // 
@@ -590,31 +670,6 @@ namespace AppMailBox
             this.drvContent.HeaderText = "Content";
             this.drvContent.Name = "drvContent";
             // 
-            // btnAddEmail
-            // 
-            this.btnAddEmail.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.btnAddEmail.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAddEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAddEmail.Image = ((System.Drawing.Image)(resources.GetObject("btnAddEmail.Image")));
-            this.btnAddEmail.Location = new System.Drawing.Point(0, 259);
-            this.btnAddEmail.Name = "btnAddEmail";
-            this.btnAddEmail.Size = new System.Drawing.Size(259, 35);
-            this.btnAddEmail.TabIndex = 16;
-            this.btnAddEmail.UseVisualStyleBackColor = false;
-            // 
-            // lTotal
-            // 
-            this.lTotal.AutoSize = true;
-            this.lTotal.Depth = 0;
-            this.lTotal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lTotal.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lTotal.Location = new System.Drawing.Point(0, 294);
-            this.lTotal.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lTotal.Name = "lTotal";
-            this.lTotal.Size = new System.Drawing.Size(77, 19);
-            this.lTotal.TabIndex = 17;
-            this.lTotal.Text = "Total Mail:";
-            // 
             // fMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,7 +685,6 @@ namespace AppMailBox
             this.Text = "MailBox";
             this.Load += new System.EventHandler(this.fMail_Load);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabHome.ResumeLayout(false);
@@ -639,6 +693,7 @@ namespace AppMailBox
             this.tabHelp.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListMail)).EndInit();
             this.ResumeLayout(false);
 
@@ -677,15 +732,17 @@ namespace AppMailBox
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DateTimePicker dtpMail;
-        private System.Windows.Forms.RichTextBox rtxtBodyMail;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dgvListMail;
+        private MaterialSkin.Controls.MaterialLabel lTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn drvID;
         private System.Windows.Forms.DataGridViewTextBoxColumn drvTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn drvSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn drvContent;
-        private MaterialSkin.Controls.MaterialLabel lTotal;
         private System.Windows.Forms.Button btnAddEmail;
+        private System.Windows.Forms.WebBrowser wbMail;
+        private System.Windows.Forms.Button btnDeleteAll;
+        private System.Windows.Forms.Button button1;
     }
 }

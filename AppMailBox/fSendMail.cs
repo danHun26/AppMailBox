@@ -115,6 +115,7 @@ namespace AppMailBox
                             status.DANHDAU = false;
                             status.XOATHU = false;
                             status.STATUS_MAIL = false;
+                            status.SEND_RECEIVE = false;
                             status.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
                             db.TRANG_THAIs.InsertOnSubmit(status);
                             db.SubmitChanges();
@@ -123,9 +124,27 @@ namespace AppMailBox
                             ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
                             ndMail.TO_MAIL = txtToMail.Text.ToLower();
                             ndMail.SUBJECT_MAIL = txtSubjectMail.Text;
-                            ndMail.CONTENT_MAIL = rTxtContent.Text;
-                            ndMail.PATH_ATTACH = txtPathAttach.Text;
 
+                            int tempidContent = 0;
+                            foreach (var item in db.NOIDUNG_MAILs.ToList())
+                            {
+                                if (tempidContent < item.id)
+                                {
+                                    tempidContent = item.id;
+                                }
+                            }
+                            tempidContent++;
+                            //Tạo nơi chứa
+                            string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                            if (!Directory.Exists(localData))
+                            {
+                                Directory.CreateDirectory(localData);
+                            }
+                            string contentMailHtml = rTxtContent.Text;
+                            string filename = tempidContent.ToString() + ".html";
+                            File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
+
+                            ndMail.PATH_ATTACH = txtPathAttach.Text;
                             foreach (var item in db.TRANG_THAIs.ToList())
                             {
                                 if (tempIDStatus < item.id)
@@ -164,7 +183,15 @@ namespace AppMailBox
                             dsMail.THOIGIAN_GUI = DateTime.Now.ToLocalTime();
                             ndMail.TO_MAIL = txtToMail.Text.ToLower();
                             ndMail.SUBJECT_MAIL = txtSubjectMail.Text;
-                            ndMail.CONTENT_MAIL = rTxtContent.Text;
+                            //Tạo nơi chứa
+                            string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                            if (!Directory.Exists(localData))
+                            {
+                                Directory.CreateDirectory(localData);
+                            }
+                            string contentMailHtml = rTxtContent.Text;
+                            string filename = this.idTempMail.ToString() + ".html";
+                            File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
                             ndMail.PATH_ATTACH = txtPathAttach.Text;
                             db.SubmitChanges();
 
@@ -256,6 +283,7 @@ namespace AppMailBox
                     status.DANHDAU = false;
                     status.XOATHU = false;
                     status.STATUS_MAIL = true;
+                    status.SEND_RECEIVE = false;
                     status.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
                     db.TRANG_THAIs.InsertOnSubmit(status);
                     db.SubmitChanges();
@@ -264,7 +292,26 @@ namespace AppMailBox
                     ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
                     ndMail.TO_MAIL = txtToMail.Text.ToLower();
                     ndMail.SUBJECT_MAIL = txtSubjectMail.Text;
-                    ndMail.CONTENT_MAIL = rTxtContent.Text;
+
+                    int tempidContent = 0;
+                    foreach (var item in db.NOIDUNG_MAILs.ToList())
+                    {
+                        if (tempidContent < item.id)
+                        {
+                            tempidContent = item.id;
+                        }
+                    }
+                    tempidContent++;
+                    //Tạo nơi chứa
+                    string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                    if (!Directory.Exists(localData))
+                    {
+                        Directory.CreateDirectory(localData);
+                    }
+                    string contentMailHtml = rTxtContent.Text;
+                    string filename = tempidContent.ToString() + ".html";
+                    File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
+
                     ndMail.PATH_ATTACH = txtPathAttach.Text;
                     foreach (var item in db.TRANG_THAIs.ToList())
                     {
@@ -286,12 +333,9 @@ namespace AppMailBox
                     }
                     db.DANHSACH_MAILs.InsertOnSubmit(dsMail);
                     db.SubmitChanges();
-                    MessageBox.Show("Lưu vào thư nháp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Lưu thư nháp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    fMail fSM = new fMail();
-                    this.Hide();
-                    fSM.ShowDialog();
-                    this.Close();
+                    fSendMail_Load(sender, e);
                 }
             }
             catch (Exception)
@@ -356,6 +400,7 @@ namespace AppMailBox
             {
                 using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                 {
+                    string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
                     foreach (var item in db.NOIDUNG_MAILs.ToList())
                     {
                         if (item.id == this.idTempMail)
@@ -363,7 +408,7 @@ namespace AppMailBox
                             txtFromMail.Text = item.FROM_MAIL;
                             txtToMail.Text = item.TO_MAIL.ToLower();
                             txtSubjectMail.Text = item.SUBJECT_MAIL;
-                            rTxtContent.Text = item.CONTENT_MAIL;
+                            rTxtContent.Text = File.ReadAllText($"{localData}\\{item.CONTENT_MAIL}", Encoding.UTF8);
                             txtPathAttach.Text = item.PATH_ATTACH;
 
                             if (txtPathAttach.Text.Contains(".png") || txtPathAttach.Text.Contains(".jpg") || txtPathAttach.Text.Contains(".jpeg"))

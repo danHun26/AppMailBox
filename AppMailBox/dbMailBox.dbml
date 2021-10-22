@@ -18,6 +18,7 @@
       <Column Name="DANHDAU" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="XOATHU" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="STATUS_MAIL" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SEND_RECEIVE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UPDATE_TIME_MAIL" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="TRANG_THAI_NOIDUNG_MAIL" Member="NOIDUNG_MAILs" ThisKey="id" OtherKey="FK_id_TRANG_THAI" Type="NOIDUNG_MAIL" />
     </Type>
@@ -58,11 +59,11 @@
     <Type Name="NOIDUNG_MAIL">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="id_NOIDUNG_MAIL" Type="System.String" DbType="VarChar(7)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="TO_MAIL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FROM_MAIL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TO_MAIL" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="FROM_MAIL" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
       <Column Name="SUBJECT_MAIL" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="CONTENT_MAIL" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
-      <Column Name="PATH_ATTACH" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="CONTENT_MAIL" Type="System.String" DbType="VarChar(10)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PATH_ATTACH" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="FK_id_TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="NOIDUNG_MAIL_DANHSACH_MAIL" Member="DANHSACH_MAILs" ThisKey="id" OtherKey="FK_id_NOIDUNG_MAIL" Type="DANHSACH_MAIL" />
       <Association Name="TRANG_THAI_NOIDUNG_MAIL" Member="TRANG_THAI" ThisKey="FK_id_TRANG_THAI" OtherKey="id" Type="TRANG_THAI" IsForeignKey="true" DeleteRule="CASCADE" />

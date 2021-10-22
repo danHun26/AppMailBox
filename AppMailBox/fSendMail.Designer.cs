@@ -264,9 +264,8 @@ namespace AppMailBox
             this.txtFromMail.ReadOnly = true;
             this.txtFromMail.Size = new System.Drawing.Size(664, 50);
             this.txtFromMail.TabIndex = 2;
-            this.txtFromMail.Text = "No subject - Send mail";
+            this.txtFromMail.Text = "";
             this.txtFromMail.TrailingIcon = null;
-            this.txtFromMail.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
             // btnSend
             // 

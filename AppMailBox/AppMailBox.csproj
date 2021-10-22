@@ -152,11 +152,18 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="background\all-mail.png" />
     <Content Include="background\anh-background-cuc-dep_110341116.jpg" />
     <Content Include="background\customer.png" />
     <Content Include="background\document.png" />
+    <Content Include="background\draft.png" />
+    <Content Include="background\garbage-can.png" />
     <Content Include="background\hinh-nen-powerpoint-mau-xanh-27.jpg" />
+    <Content Include="background\mail-inbox.png" />
+    <Content Include="background\outbox.png" />
     <Content Include="background\register.png" />
+    <Content Include="background\star.png" />
+    <Content Include="background\trash-can.png" />
     <Content Include="icon\-.png" />
     <Content Include="icon\add-message.png" />
     <Content Include="icon\add.png" />
@@ -175,9 +182,11 @@
     <Content Include="icon\cancel.png" />
     <Content Include="icon\check.png" />
     <Content Include="icon\close.png" />
+    <Content Include="icon\delete %282%29.png" />
     <Content Include="icon\delete-mail.png" />
     <Content Include="icon\delete-message.png" />
     <Content Include="icon\delete.png" />
+    <Content Include="icon\deleteM.png" />
     <Content Include="icon\draft %282%29.png" />
     <Content Include="icon\edit.png" />
     <Content Include="icon\email.png" />

@@ -396,6 +396,8 @@ namespace AppMailBox
 		
 		private System.Nullable<bool> _STATUS_MAIL;
 		
+		private System.Nullable<bool> _SEND_RECEIVE;
+		
 		private System.Nullable<System.DateTime> _UPDATE_TIME_MAIL;
 		
 		private EntitySet<NOIDUNG_MAIL> _NOIDUNG_MAILs;
@@ -414,6 +416,8 @@ namespace AppMailBox
     partial void OnXOATHUChanged();
     partial void OnSTATUS_MAILChanging(System.Nullable<bool> value);
     partial void OnSTATUS_MAILChanged();
+    partial void OnSEND_RECEIVEChanging(System.Nullable<bool> value);
+    partial void OnSEND_RECEIVEChanged();
     partial void OnUPDATE_TIME_MAILChanging(System.Nullable<System.DateTime> value);
     partial void OnUPDATE_TIME_MAILChanged();
     #endregion
@@ -520,6 +524,26 @@ namespace AppMailBox
 					this._STATUS_MAIL = value;
 					this.SendPropertyChanged("STATUS_MAIL");
 					this.OnSTATUS_MAILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEND_RECEIVE", DbType="Bit")]
+		public System.Nullable<bool> SEND_RECEIVE
+		{
+			get
+			{
+				return this._SEND_RECEIVE;
+			}
+			set
+			{
+				if ((this._SEND_RECEIVE != value))
+				{
+					this.OnSEND_RECEIVEChanging(value);
+					this.SendPropertyChanging();
+					this._SEND_RECEIVE = value;
+					this.SendPropertyChanged("SEND_RECEIVE");
+					this.OnSEND_RECEIVEChanged();
 				}
 			}
 		}
@@ -1329,7 +1353,7 @@ namespace AppMailBox
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TO_MAIL", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TO_MAIL", DbType="NVarChar(2000) NOT NULL", CanBeNull=false)]
 		public string TO_MAIL
 		{
 			get
@@ -1349,7 +1373,7 @@ namespace AppMailBox
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FROM_MAIL", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FROM_MAIL", DbType="NVarChar(2000) NOT NULL", CanBeNull=false)]
 		public string FROM_MAIL
 		{
 			get
@@ -1389,7 +1413,7 @@ namespace AppMailBox
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTENT_MAIL", DbType="NVarChar(2000) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTENT_MAIL", AutoSync=AutoSync.Always, DbType="VarChar(10)", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public string CONTENT_MAIL
 		{
 			get
@@ -1409,7 +1433,7 @@ namespace AppMailBox
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PATH_ATTACH", DbType="NVarChar(300)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PATH_ATTACH", DbType="NVarChar(500)")]
 		public string PATH_ATTACH
 		{
 			get
