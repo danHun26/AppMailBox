@@ -159,9 +159,11 @@
     <Content Include="background\draft.png" />
     <Content Include="background\garbage-can.png" />
     <Content Include="background\hinh-nen-powerpoint-mau-xanh-27.jpg" />
+    <Content Include="background\information.png" />
     <Content Include="background\mail-inbox.png" />
     <Content Include="background\outbox.png" />
     <Content Include="background\register.png" />
+    <Content Include="background\reply-message.png" />
     <Content Include="background\star %281%29.png" />
     <Content Include="background\star.png" />
     <Content Include="background\trash-can.png" />

@@ -354,7 +354,9 @@ namespace AppMailBox
                 dgvListMail.Rows.Clear();
                 btnDeleteAll.Enabled = false;
                 btnRecovery.Enabled = false;
-             
+                btnReplyMail.Enabled = true;
+                btnBack.Enabled = false;
+
                 btnInbox.BackColor = Color.LimeGreen;
                 btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
                 btnAllMail.BackColor = Color.FromArgb(238, 26, 74);
@@ -405,6 +407,8 @@ namespace AppMailBox
         {
             btnDeleteAll.Enabled = false;
             btnRecovery.Enabled = false;
+            btnReplyMail.Enabled = true;
+            btnBack.Enabled = false;
             this.savaLocal = "Inbox";
 
             btnInbox.BackColor = Color.LimeGreen;
@@ -492,6 +496,8 @@ namespace AppMailBox
         {
             btnDeleteAll.Enabled = false;
             btnRecovery.Enabled = false;
+            btnReplyMail.Enabled = false;
+            btnBack.Enabled = false;
             this.savaLocal = "Outbox";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -545,6 +551,8 @@ namespace AppMailBox
         {
             btnDeleteAll.Enabled = false;
             btnRecovery.Enabled = false;
+            btnReplyMail.Enabled = false;
+            btnBack.Enabled = false;
             this.savaLocal = "AllMail";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -597,6 +605,8 @@ namespace AppMailBox
         {
             btnDeleteAll.Enabled = false;
             btnRecovery.Enabled = false;
+            btnReplyMail.Enabled = false;
+            btnBack.Enabled = true;
             this.savaLocal = "Starred";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -649,6 +659,8 @@ namespace AppMailBox
         {
             btnDeleteAll.Enabled = false;
             btnRecovery.Enabled = false;
+            btnReplyMail.Enabled = false;
+            btnBack.Enabled = false;
             this.savaLocal = "Drafts";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -703,6 +715,8 @@ namespace AppMailBox
         {
             btnDeleteAll.Enabled = true;
             btnRecovery.Enabled = true;
+            btnReplyMail.Enabled = false;
+            btnBack.Enabled = false;
             this.savaLocal = "GarbageCan";
 
             btnInbox.BackColor = Color.FromArgb(238, 26, 74);
@@ -900,7 +914,7 @@ namespace AppMailBox
                                 break;
                             } 
                         }
-                        btnStarred_Click(sender, e);
+                        loadLocalButton(sender, e);
                     }
                 }
                 catch (Exception)
@@ -942,10 +956,54 @@ namespace AppMailBox
                 }
             }
             else
-                MessageBox.Show("Reply mail chỉ hổ trợ cho thư gửi đến", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Reply mail chỉ hỗ trợ cho thư gửi đến", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
 
+        }
+
+        //Khôi phục Mail đã xóa
+        private void btnRecovery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                {
+                    TRANG_THAI statusMail = new TRANG_THAI();
+                    foreach (var item in db.DANHSACH_MAILs.ToList())
+                    {
+                        if (item.id == this.idDSMail
+                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true)
+                        {
+                            statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
+                            statusMail.XOATHU = false;
+                            db.SubmitChanges();
+                            loadLocalButton(sender, e);
+                            break;
+                        }
+                    }
+                    loadLocalButton(sender, e);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Sự kiện đăng xuất
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.idPassLocal = 0;
+            fMail_Load(sender, e);
+        }
+
+        //Sự kiện tắt MailBox
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult check = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (check == DialogResult.Yes)
+                this.Close();
         }
     }
 }

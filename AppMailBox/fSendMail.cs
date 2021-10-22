@@ -492,12 +492,17 @@ namespace AppMailBox
                             if (item.id == this.idTempMail)
                             {
                                 txtFromMail.Text = item.FROM_MAIL;
-                                txtToMail.Text = item.TO_MAIL.ToLower();
+                                string temp = item.TO_MAIL;
+                                string temp1 = temp.Substring(0, temp.IndexOf(">"));
+                                string temp2 = temp1.Substring(temp.IndexOf("<"));
+                                string ToMail = temp2.Substring(1);
+
+                                txtToMail.Text = ToMail.ToLower();
                                 txtSubjectMail.Text = item.SUBJECT_MAIL;
                                 rTxtContent.Text = "";
                             }
                         }
-                    }
+                    }  
                 }
             }
             catch (Exception)

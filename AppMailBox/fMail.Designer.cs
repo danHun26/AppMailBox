@@ -314,6 +314,7 @@ namespace AppMailBox
             // 
             // btnBack
             // 
+            this.btnBack.Enabled = false;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
             this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -327,6 +328,7 @@ namespace AppMailBox
             // 
             // btnReplyMail
             // 
+            this.btnReplyMail.Enabled = false;
             this.btnReplyMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplyMail.Image = ((System.Drawing.Image)(resources.GetObject("btnReplyMail.Image")));
             this.btnReplyMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -400,6 +402,7 @@ namespace AppMailBox
             this.btnLogOut.TabIndex = 2;
             this.btnLogOut.Text = "Logout";
             this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnExit
             // 
@@ -412,6 +415,7 @@ namespace AppMailBox
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnEdit
             // 
@@ -529,6 +533,7 @@ namespace AppMailBox
             this.btnRecovery.Text = "Recovery";
             this.btnRecovery.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRecovery.UseVisualStyleBackColor = false;
+            this.btnRecovery.Click += new System.EventHandler(this.btnRecovery_Click);
             // 
             // btnDeleteAll
             // 
