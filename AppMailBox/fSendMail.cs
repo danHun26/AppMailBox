@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -9,7 +7,6 @@ using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppMailBox
@@ -75,7 +72,7 @@ namespace AppMailBox
                     if (Regex.IsMatch(txtToMail.Text, pattern) == false)
                         throw new Exception("Định dạng email gửi không đúng.");
 
-                    if(txtSubjectMail.Text != "")
+                    if (txtSubjectMail.Text != "")
                     {
                         tempSub = txtSubjectMail.Text;
                     }
@@ -145,7 +142,10 @@ namespace AppMailBox
                             {
                                 Directory.CreateDirectory(localData);
                             }
-                            string contentMailHtml = rTxtContent.Text;
+                            string contentMailHtml = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>" 
+                                + System.Environment.NewLine
+                                + System.Environment.NewLine
+                                + rTxtContent.Text;
                             string filename = tempidContent.ToString() + ".html";
                             File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
 
@@ -274,73 +274,116 @@ namespace AppMailBox
         {
             try
             {
-                //Lưu vào database
-                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                if (txtSubjectMail.Text != "")
                 {
-                    int tempIDNDMail = 0;
-                    int tempIDStatus = 0;
-
-                    DANHSACH_MAIL dsMail = new DANHSACH_MAIL();
-                    NOIDUNG_MAIL ndMail = new NOIDUNG_MAIL();
-                    TRANG_THAI status = new TRANG_THAI();
-
-                    //TRẠNG THÁI
-                    status.DANHDAU = false;
-                    status.XOATHU = false;
-                    status.STATUS_MAIL = true;
-                    status.SEND_RECEIVE = false;
-                    status.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
-                    db.TRANG_THAIs.InsertOnSubmit(status);
-                    db.SubmitChanges();
-
-                    //NỘI DUNG MAIL
-                    ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
-                    ndMail.TO_MAIL = txtToMail.Text.ToLower();
-                    ndMail.SUBJECT_MAIL = tempSub;
-
-                    int tempidContent = 0;
-                    foreach (var item in db.NOIDUNG_MAILs.ToList())
+                    tempSub = txtSubjectMail.Text;
+                }
+                if (this.classifyMail == 0)
+                {
+                    //Lưu vào database
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        if (tempidContent < item.id)
+                        int tempIDNDMail = 0;
+                        int tempIDStatus = 0;
+
+                        DANHSACH_MAIL dsMail = new DANHSACH_MAIL();
+                        NOIDUNG_MAIL ndMail = new NOIDUNG_MAIL();
+                        TRANG_THAI status = new TRANG_THAI();
+
+                        //TRẠNG THÁI
+                        status.DANHDAU = false;
+                        status.XOATHU = false;
+                        status.STATUS_MAIL = true;
+                        status.SEND_RECEIVE = false;
+                        status.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
+                        db.TRANG_THAIs.InsertOnSubmit(status);
+                        db.SubmitChanges();
+
+                        //NỘI DUNG MAIL
+                        ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
+                        ndMail.TO_MAIL = txtToMail.Text.ToLower();
+                        ndMail.SUBJECT_MAIL = tempSub;
+
+                        int tempidContent = 0;
+                        foreach (var item in db.NOIDUNG_MAILs.ToList())
                         {
-                            tempidContent = item.id;
+                            if (tempidContent < item.id)
+                            {
+                                tempidContent = item.id;
+                            }
                         }
-                    }
-                    tempidContent++;
-                    //Tạo nơi chứa
-                    string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
-                    if (!Directory.Exists(localData))
-                    {
-                        Directory.CreateDirectory(localData);
-                    }
-                    string contentMailHtml = rTxtContent.Text;
-                    string filename = tempidContent.ToString() + ".html";
-                    File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
+                        tempidContent++;
+                        //Tạo nơi chứa
+                        string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                        if (!Directory.Exists(localData))
+                        {
+                            Directory.CreateDirectory(localData);
+                        }
+                        string contentMailHtml = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>"
+                            + System.Environment.NewLine 
+                            + System.Environment.NewLine
+                            + rTxtContent.Text;
+                        string filename = tempidContent.ToString() + ".html";
+                        File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
 
-                    ndMail.PATH_ATTACH = txtPathAttach.Text;
-                    foreach (var item in db.TRANG_THAIs.ToList())
-                    {
-                        if (tempIDStatus < item.id)
-                            tempIDStatus = item.id;
-                        ndMail.FK_id_TRANG_THAI = tempIDStatus;
-                    }
-                    db.NOIDUNG_MAILs.InsertOnSubmit(ndMail);
-                    db.SubmitChanges();
+                        ndMail.PATH_ATTACH = txtPathAttach.Text;
+                        foreach (var item in db.TRANG_THAIs.ToList())
+                        {
+                            if (tempIDStatus < item.id)
+                                tempIDStatus = item.id;
+                            ndMail.FK_id_TRANG_THAI = tempIDStatus;
+                        }
+                        db.NOIDUNG_MAILs.InsertOnSubmit(ndMail);
+                        db.SubmitChanges();
 
-                    //DANH SÁCH MAIL
-                    dsMail.THOIGIAN_GUI = DateTime.Now.ToLocalTime();
-                    dsMail.FK_id_MATKHAU_MAIL = this.idpassMail;
-                    foreach (var item in db.NOIDUNG_MAILs.ToList())
-                    {
-                        if (tempIDNDMail < item.id)
-                            tempIDNDMail = item.id;
-                        dsMail.FK_id_NOIDUNG_MAIL = tempIDNDMail;
-                    }
-                    db.DANHSACH_MAILs.InsertOnSubmit(dsMail);
-                    db.SubmitChanges();
-                    MessageBox.Show("Lưu thư nháp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //DANH SÁCH MAIL
+                        dsMail.THOIGIAN_GUI = DateTime.Now.ToLocalTime();
+                        dsMail.FK_id_MATKHAU_MAIL = this.idpassMail;
+                        foreach (var item in db.NOIDUNG_MAILs.ToList())
+                        {
+                            if (tempIDNDMail < item.id)
+                                tempIDNDMail = item.id;
+                            dsMail.FK_id_NOIDUNG_MAIL = tempIDNDMail;
+                        }
+                        db.DANHSACH_MAILs.InsertOnSubmit(dsMail);
+                        db.SubmitChanges();
+                        MessageBox.Show("Lưu thư nháp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    fSendMail_Load(sender, e);
+                        fSendMail_Load(sender, e);
+                    }
+                }
+                else
+                {
+                    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                    {
+                        NOIDUNG_MAIL ndMail = new NOIDUNG_MAIL();
+                        DANHSACH_MAIL dsMail = new DANHSACH_MAIL();
+
+                        ndMail = db.NOIDUNG_MAILs.Where(s => s.id == this.idTempMail).Single();
+                        dsMail = db.DANHSACH_MAILs.Where(s => s.FK_id_NOIDUNG_MAIL == this.idTempMail).Single();
+
+                        ndMail.TRANG_THAI.STATUS_MAIL = true;
+                        ndMail.TRANG_THAI.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
+                        dsMail.THOIGIAN_GUI = DateTime.Now.ToLocalTime();
+                        ndMail.TO_MAIL = txtToMail.Text.ToLower();
+                        ndMail.SUBJECT_MAIL = tempSub;
+                        //Tạo nơi chứa
+                        string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                        if (!Directory.Exists(localData))
+                        {
+                            Directory.CreateDirectory(localData);
+                        }
+                        string contentMailHtml = rTxtContent.Text;
+                        string filename = this.idTempMail.ToString() + ".html";
+                        File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
+                        ndMail.PATH_ATTACH = txtPathAttach.Text;
+                        db.SubmitChanges();
+
+                        this.classifyMail = 0;
+                        MessageBox.Show("Lưu thư nháp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        fSendMail_Load(sender, e);
+                    }
                 }
             }
             catch (Exception)

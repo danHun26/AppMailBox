@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppMailBox
@@ -44,7 +39,7 @@ namespace AppMailBox
             {
                 try
                 {
-                    if (txtEmail.Text == "") throw new Exception("Nhập email để khôi phục tài khoản!");
+                    if (txtEmail.Text == "") throw new Exception("Nhập email để khôi phục tài khoản.");
                     else
                     {
                         using (dbMailBoxDataContext db = new dbMailBoxDataContext())
@@ -67,7 +62,7 @@ namespace AppMailBox
                                     break;
                                 }
                             }
-                            if (emailClient == "") throw new Exception("Email chưa được đăng ký!");
+                            if (emailClient == "") throw new Exception("Email chưa được đăng ký.");
                             else
                             {
                                 MailMessage mail = new MailMessage(this.userMailAccAdmin, emailClient, this.subject.ToString(), this.content.ToString());
@@ -147,18 +142,17 @@ namespace AppMailBox
                                 Random rdpin = new Random();
                                 infoClient.MAPIN = rdpin.Next(100000, 999999);
 
-                                DialogResult check = MessageBox.Show("Xác nhận khôi phục mật khẩu!", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                DialogResult check = MessageBox.Show("Xác nhận khôi phục mật khẩu.", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (check == DialogResult.Yes)
                                 {
                                     db.SubmitChanges();
                                     MessageBox.Show("Khôi phục mật khẩu thành công." + System.Environment.NewLine + "Quay lại cửa sổ đăng nhập.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                                    fQuenMatKhau_Load(sender, e);
                                 }
                             }
                             else
-                                throw new Exception("Nhập lại password không chính xác!");
+                                throw new Exception("Nhập lại password không chính xác.");
                         }
-                        fQuenMatKhau_Load(sender, e);
                     }
                 }
                 catch (Exception ex)
@@ -208,10 +202,10 @@ namespace AppMailBox
                                 btnContinueStep2.Enabled = true;
                                 btnReadPw1.Enabled = true;
                                 btnReadPw2.Enabled = true;
-                                throw new Exception("Xác nhận mã pin thành công" + Environment.NewLine + "Mời qua bước 2 đặt lại mật khẩu mới!");
+                                throw new Exception("Xác nhận mã pin thành công." + Environment.NewLine + "Mời qua bước 2 đặt lại mật khẩu mới.");
                             }
                         }
-                        if (temp == 0) throw new Exception("Mã khôi phục không chính xác!");
+                        if (temp == 0) throw new Exception("Mã khôi phục không chính xác.");
                     }
                 }
                 catch (Exception ex)

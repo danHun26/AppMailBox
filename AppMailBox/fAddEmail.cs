@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppMailBox
@@ -18,15 +12,18 @@ namespace AppMailBox
         private string userMailAccAdmin = "appmailboxnhom8@gmail.com";
         private string subject = "[MailBox] Có một người thêm tài khoản!";
         private int idPassLocal = 0;
+        private string userMailAcc = "";
+
         public fAddEmail()
         {
             InitializeComponent();
         }
 
         //Constructor truyền id mật khẩu MailBox
-        public fAddEmail(int idPassLocal) : this()
+        public fAddEmail(string userMailAcc, int idPassLocal) : this()
         {
             this.idPassLocal = idPassLocal;
+            this.userMailAcc = userMailAcc;
         }
 
         //Di chuyển form
@@ -175,7 +172,7 @@ namespace AppMailBox
                 //Kiểm tra trước khi thoát 
                 if (txtUserMail.Text == "" && txtPassMail.Text == "")
                 {
-                    fMail showMail = new fMail(this.idPassLocal);
+                    fMail showMail = new fMail(this.userMailAcc, this.idPassLocal);
                     this.Hide();
                     showMail.ShowDialog();
                     this.Close();
@@ -185,7 +182,7 @@ namespace AppMailBox
                     DialogResult check = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (check == DialogResult.Yes)
                     {
-                        fMail showMail = new fMail(this.idPassLocal);
+                        fMail showMail = new fMail(this.userMailAcc, this.idPassLocal);
                         this.Hide();
                         showMail.ShowDialog();
                         this.Close();

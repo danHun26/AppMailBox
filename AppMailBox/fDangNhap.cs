@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppMailBox
@@ -40,7 +34,7 @@ namespace AppMailBox
             }
             catch (Exception)
             {
-                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển!.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -76,7 +70,7 @@ namespace AppMailBox
                 {
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        if (txtPassword.Text == "" || txtUsername.Text == "") throw new Exception("Enter complete information!");
+                        if (txtPassword.Text == "" || txtUsername.Text == "") throw new Exception("Nhập thông tin đầy đủ.");
                         int temp = 0;
                         foreach (var item in db.MATKHAU_LOCALs.ToList())
                         {
@@ -95,7 +89,6 @@ namespace AppMailBox
                                         this.Close();
                                     }
                                 }
-
                             }
                         }
                         if (temp == 0)
@@ -104,7 +97,7 @@ namespace AppMailBox
                             txtPassword.Text = "";
                             //txtUsername.Hint = "Re-enter username";
                             txtPassword.Hint = "Re-enter password";
-                            throw new Exception("Username or password is incorrect!");
+                            throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng.");
                         }
                     }
                 }
@@ -115,7 +108,7 @@ namespace AppMailBox
             }
             catch (Exception)
             {
-                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển!.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

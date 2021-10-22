@@ -1,17 +1,13 @@
 ﻿using EAGetMail;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Reflection;
 using System.Net;
+using System.Text;
+using System.Windows.Forms;
 
 namespace AppMailBox
 {
@@ -20,6 +16,7 @@ namespace AppMailBox
         private int idPassLocal = 0;
         private int idDSMail = 0;
         private string savaLocal = "";
+        private int tempCmbMail = 0;
 
         public fMail()
         {
@@ -30,6 +27,7 @@ namespace AppMailBox
         public fMail(int idPassLocal) : this()
         {
             this.idPassLocal = idPassLocal;
+            this.tempCmbMail = this.idPassLocal;
         }
 
         //Nhận lại tên user trước đó [SendMail]
@@ -37,6 +35,7 @@ namespace AppMailBox
         {
             cmbEmail.Text = cmbUserNameEmail;
             this.idPassLocal = idPassLocal;
+            this.tempCmbMail = this.idPassLocal;
         }
 
         //Sự kiện chọn combobox để gửi mail mới
@@ -93,7 +92,7 @@ namespace AppMailBox
         //Thêm 1 địa chi email mới
         private void btnAddEmail_Click(object sender, EventArgs e)
         {
-            fAddEmail fAddMail = new fAddEmail(this.idPassLocal);
+            fAddEmail fAddMail = new fAddEmail(cmbEmail.Text, this.idPassLocal);
             this.Hide();
             fAddMail.ShowDialog();
             this.Close();
@@ -114,7 +113,7 @@ namespace AppMailBox
                             if (item.id.ToString() == row.Cells[0].Value.ToString())
                             {
                                 this.idDSMail = item.id;
-                                string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory()); 
+                                string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
                                 wbMail.Navigate(new System.Uri($"{localData}\\{item.NOIDUNG_MAIL.CONTENT_MAIL}"));
                             }
                         }
@@ -156,7 +155,7 @@ namespace AppMailBox
                         TRANG_THAI statusMail = new TRANG_THAI();
                         NOIDUNG_MAIL contentMail = new NOIDUNG_MAIL();
                         WebClient client = new WebClient();
-                        
+
                         checkMailServer = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>" + System.Environment.NewLine + oMail.HtmlBody.ToString();
 
                         foreach (var item in db.NOIDUNG_MAILs.ToList())
@@ -253,7 +252,7 @@ namespace AppMailBox
                             int tempidContent1 = 0;
                             foreach (var item in db.NOIDUNG_MAILs.ToList())
                             {
-                                if(tempidContent1 < item.id)
+                                if (tempidContent1 < item.id)
                                 {
                                     tempidContent1 = item.id;
                                 }
@@ -279,7 +278,7 @@ namespace AppMailBox
                                 }
                                 contentMail.FK_id_TRANG_THAI = tempidTT;
                             }
-               
+
                             db.NOIDUNG_MAILs.InsertOnSubmit(contentMail);
                             db.SubmitChanges();
 
@@ -328,55 +327,76 @@ namespace AppMailBox
                 fLogin.ShowDialog();
                 this.Close();
             }
-            else
+            else if (this.tempCmbMail == this.idPassLocal)
             {
-                dgvListMail.Rows.Clear();
-                btnDeleteAll.Enabled = false;
-                btnRecovery.Enabled = false;
-
-                btnInbox.BackColor = Color.LimeGreen;
-                btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
-                btnAllMail.BackColor = Color.FromArgb(238, 26, 74);
-                btnStarred.BackColor = Color.FromArgb(238, 26, 74);
-                btnDrafts.BackColor = Color.FromArgb(238, 26, 74);
-                btnGarbageCan.BackColor = Color.FromArgb(238, 26, 74);
-
-                btnInbox.FlatStyle = FlatStyle.Standard;
-                btnOutbox.FlatStyle = FlatStyle.Popup;
-                btnAllMail.FlatStyle = FlatStyle.Popup;
-                btnStarred.FlatStyle = FlatStyle.Popup;
-                btnDrafts.FlatStyle = FlatStyle.Popup;
-                btnGarbageCan.FlatStyle = FlatStyle.Popup;
-
                 try
                 {
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        foreach (var item in db.DANHSACH_MAILs.ToList())
+                        foreach (var item in db.MATKHAU_MAILs.ToList())
                         {
-                            if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text 
-                                && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == true
-                                && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
-                                && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false
-                                && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
+                            if (item.FK_id_MATKHAU_LOCAL == this.idPassLocal)
                             {
-                                int index = dgvListMail.Rows.Add();
-                                dgvListMail.Rows[index].Cells[0].Value = item.id;
-                                dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
-                                dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                                dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                                cmbEmail.Items.Add(item.USERNAME_MAIL);
+                                cmbEmail.Text = item.USERNAME_MAIL;
                             }
                         }
-                        this.dgvListMail.Sort(this.dgvListMail.Columns[0], ListSortDirection.Descending);
                     }
-                    int countMail = dgvListMail.Rows.Count - 1;
-                    lTotal.Text = "Total: " + countMail.ToString() + " email.";
+                    this.tempCmbMail = 0;
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            dgvListMail.Rows.Clear();
+            btnDeleteAll.Enabled = false;
+            btnRecovery.Enabled = false;
+
+            btnInbox.BackColor = Color.LimeGreen;
+            btnOutbox.BackColor = Color.FromArgb(238, 26, 74);
+            btnAllMail.BackColor = Color.FromArgb(238, 26, 74);
+            btnStarred.BackColor = Color.FromArgb(238, 26, 74);
+            btnDrafts.BackColor = Color.FromArgb(238, 26, 74);
+            btnGarbageCan.BackColor = Color.FromArgb(238, 26, 74);
+
+            btnInbox.FlatStyle = FlatStyle.Standard;
+            btnOutbox.FlatStyle = FlatStyle.Popup;
+            btnAllMail.FlatStyle = FlatStyle.Popup;
+            btnStarred.FlatStyle = FlatStyle.Popup;
+            btnDrafts.FlatStyle = FlatStyle.Popup;
+            btnGarbageCan.FlatStyle = FlatStyle.Popup;
+
+            try
+            {
+                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                {
+                    foreach (var item in db.DANHSACH_MAILs.ToList())
+                    {
+                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
+                            && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == true
+                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
+                            && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false
+                            && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
+                        {
+                            int index = dgvListMail.Rows.Add();
+                            dgvListMail.Rows[index].Cells[0].Value = item.id;
+                            dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
+                            dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                        }
+                    }
+                    this.dgvListMail.Sort(this.dgvListMail.Columns[0], ListSortDirection.Descending);
+                }
+                int countMail = dgvListMail.Rows.Count - 1;
+                lTotal.Text = "Total: " + countMail.ToString() + " email.";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         //Chọn tài khoản email
@@ -405,7 +425,7 @@ namespace AppMailBox
                 {
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
-                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text 
+                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
                             && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == true
                             && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false
@@ -415,7 +435,7 @@ namespace AppMailBox
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
                             dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
                             dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
                         }
                     }
                     this.dgvListMail.Sort(this.dgvListMail.Columns[0], ListSortDirection.Descending);
@@ -427,7 +447,7 @@ namespace AppMailBox
             catch (Exception)
             {
                 MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }  
+            }
         }
 
         //Sự kiện đồng bộ mail từ server xuống
@@ -459,9 +479,9 @@ namespace AppMailBox
         //Sự kiện thư đến 
         private void btnInbox_Click(object sender, EventArgs e)
         {
+            this.savaLocal = "Inbox";
             dgvListMail.Rows.Clear();
             fMail_Load(sender, e);
-            this.savaLocal = "Inbox";
         }
 
         //Sự kiện thư đi
@@ -493,8 +513,8 @@ namespace AppMailBox
                 {
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
-                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text 
-                            && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == false 
+                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
+                            && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
@@ -503,7 +523,7 @@ namespace AppMailBox
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
                             dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
                             dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
                         }
                     }
                 }
@@ -555,7 +575,7 @@ namespace AppMailBox
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
                             dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
                             dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
                         }
                     }
                 }
@@ -598,7 +618,7 @@ namespace AppMailBox
                 {
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
-                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text 
+                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
                             && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == true
                             && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false)
@@ -607,7 +627,7 @@ namespace AppMailBox
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
                             dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
                             dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
                         }
                     }
                 }
@@ -650,7 +670,7 @@ namespace AppMailBox
                 {
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
-                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text 
+                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
                             && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == true
                             && item.NOIDUNG_MAIL.TRANG_THAI.SEND_RECEIVE == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
@@ -660,14 +680,14 @@ namespace AppMailBox
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
                             dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
                             dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
                         }
                     }
                 }
                 this.dgvListMail.Sort(this.dgvListMail.Columns[0], ListSortDirection.Descending);
                 int countMail = dgvListMail.Rows.Count - 1;
                 lTotal.Text = "Total: " + countMail.ToString() + " email.";
-                
+
             }
             catch (Exception)
             {
@@ -704,8 +724,8 @@ namespace AppMailBox
                 {
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
-                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text 
-                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true
+                        if (item.NOIDUNG_MAIL.FROM_MAIL.ToString() == cmbEmail.Text
+                            && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.STATUS_MAIL == false
                             && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == false)
                         {
@@ -713,7 +733,7 @@ namespace AppMailBox
                             dgvListMail.Rows[index].Cells[0].Value = item.id;
                             dgvListMail.Rows[index].Cells[1].Value = item.NOIDUNG_MAIL.TO_MAIL;
                             dgvListMail.Rows[index].Cells[2].Value = item.NOIDUNG_MAIL.SUBJECT_MAIL;
-                            dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
+                            //dgvListMail.Rows[index].Cells[3].Value = item.NOIDUNG_MAIL.CONTENT_MAIL;
                         }
                     }
                 }
@@ -773,10 +793,25 @@ namespace AppMailBox
             loadLocalButton(sender, e);
         }
 
-
-        private void btnDeleteAll_Click(object sender, EventArgs e)
+        //Sự kiện đánh dấu thư
+        private void btnArchiveMail_Click(object sender, EventArgs e)
         {
+            using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+            {
+                TRANG_THAI statusMail = new TRANG_THAI();
 
+                foreach (var item in db.DANHSACH_MAILs.ToList())
+                {
+                    if (item.id == this.idDSMail
+                        && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == false)
+                    {
+                        statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
+                        statusMail.DANHDAU = true;
+                        db.SubmitChanges();
+                    }
+                }
+            }
+            loadLocalButton(sender, e);
         }
     }
 }

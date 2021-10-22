@@ -38,6 +38,8 @@ namespace AppMailBox
             this.btnContinueStep2 = new System.Windows.Forms.Button();
             this.txtPassword = new MaterialSkin.Controls.MaterialTextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnReadPw1 = new System.Windows.Forms.Button();
+            this.btnReadPw2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,14 +47,12 @@ namespace AppMailBox
             this.btnBackStep1 = new System.Windows.Forms.Button();
             this.btnContinueStep1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtPin = new MaterialSkin.Controls.MaterialTextBox();
+            this.btnAccpect = new System.Windows.Forms.Button();
             this.txtEmail = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAccpect = new System.Windows.Forms.Button();
-            this.btnReadPw2 = new System.Windows.Forms.Button();
-            this.btnReadPw1 = new System.Windows.Forms.Button();
-            this.txtPin = new MaterialSkin.Controls.MaterialTextBox();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -181,6 +181,30 @@ namespace AppMailBox
             this.panel4.TabIndex = 5;
             this.panel4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fQuenMatKhau_MouseDown);
             // 
+            // btnReadPw1
+            // 
+            this.btnReadPw1.BackColor = System.Drawing.SystemColors.Window;
+            this.btnReadPw1.Enabled = false;
+            this.btnReadPw1.Image = ((System.Drawing.Image)(resources.GetObject("btnReadPw1.Image")));
+            this.btnReadPw1.Location = new System.Drawing.Point(342, 58);
+            this.btnReadPw1.Name = "btnReadPw1";
+            this.btnReadPw1.Size = new System.Drawing.Size(53, 49);
+            this.btnReadPw1.TabIndex = 9;
+            this.btnReadPw1.UseVisualStyleBackColor = false;
+            this.btnReadPw1.Click += new System.EventHandler(this.btnReadPw1_Click_1);
+            // 
+            // btnReadPw2
+            // 
+            this.btnReadPw2.BackColor = System.Drawing.SystemColors.Window;
+            this.btnReadPw2.Enabled = false;
+            this.btnReadPw2.Image = ((System.Drawing.Image)(resources.GetObject("btnReadPw2.Image")));
+            this.btnReadPw2.Location = new System.Drawing.Point(342, 3);
+            this.btnReadPw2.Name = "btnReadPw2";
+            this.btnReadPw2.Size = new System.Drawing.Size(53, 49);
+            this.btnReadPw2.TabIndex = 7;
+            this.btnReadPw2.UseVisualStyleBackColor = false;
+            this.btnReadPw2.Click += new System.EventHandler(this.btnReadPw1_Click_1);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
@@ -271,6 +295,36 @@ namespace AppMailBox
             this.panel3.TabIndex = 3;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fQuenMatKhau_MouseDown);
             // 
+            // txtPin
+            // 
+            this.txtPin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPin.Depth = 0;
+            this.txtPin.Enabled = false;
+            this.txtPin.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPin.Hint = "Pin";
+            this.txtPin.LeadingIcon = ((System.Drawing.Image)(resources.GetObject("txtPin.LeadingIcon")));
+            this.txtPin.Location = new System.Drawing.Point(3, 109);
+            this.txtPin.MaxLength = 50;
+            this.txtPin.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPin.Multiline = false;
+            this.txtPin.Name = "txtPin";
+            this.txtPin.Size = new System.Drawing.Size(337, 50);
+            this.txtPin.TabIndex = 3;
+            this.txtPin.Text = "";
+            this.txtPin.TrailingIcon = null;
+            // 
+            // btnAccpect
+            // 
+            this.btnAccpect.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnAccpect.Enabled = false;
+            this.btnAccpect.Image = ((System.Drawing.Image)(resources.GetObject("btnAccpect.Image")));
+            this.btnAccpect.Location = new System.Drawing.Point(346, 109);
+            this.btnAccpect.Name = "btnAccpect";
+            this.btnAccpect.Size = new System.Drawing.Size(49, 49);
+            this.btnAccpect.TabIndex = 4;
+            this.btnAccpect.UseVisualStyleBackColor = false;
+            this.btnAccpect.Click += new System.EventHandler(this.btnAccpect_Click);
+            // 
             // txtEmail
             // 
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -322,60 +376,6 @@ namespace AppMailBox
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(412, 320);
             this.panel1.TabIndex = 2;
-            // 
-            // btnAccpect
-            // 
-            this.btnAccpect.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnAccpect.Enabled = false;
-            this.btnAccpect.Image = ((System.Drawing.Image)(resources.GetObject("btnAccpect.Image")));
-            this.btnAccpect.Location = new System.Drawing.Point(346, 109);
-            this.btnAccpect.Name = "btnAccpect";
-            this.btnAccpect.Size = new System.Drawing.Size(49, 49);
-            this.btnAccpect.TabIndex = 4;
-            this.btnAccpect.UseVisualStyleBackColor = false;
-            this.btnAccpect.Click += new System.EventHandler(this.btnAccpect_Click);
-            // 
-            // btnReadPw2
-            // 
-            this.btnReadPw2.BackColor = System.Drawing.SystemColors.Window;
-            this.btnReadPw2.Enabled = false;
-            this.btnReadPw2.Image = ((System.Drawing.Image)(resources.GetObject("btnReadPw2.Image")));
-            this.btnReadPw2.Location = new System.Drawing.Point(342, 3);
-            this.btnReadPw2.Name = "btnReadPw2";
-            this.btnReadPw2.Size = new System.Drawing.Size(53, 49);
-            this.btnReadPw2.TabIndex = 7;
-            this.btnReadPw2.UseVisualStyleBackColor = false;
-            this.btnReadPw2.Click += new System.EventHandler(this.btnReadPw1_Click_1);
-            // 
-            // btnReadPw1
-            // 
-            this.btnReadPw1.BackColor = System.Drawing.SystemColors.Window;
-            this.btnReadPw1.Enabled = false;
-            this.btnReadPw1.Image = ((System.Drawing.Image)(resources.GetObject("btnReadPw1.Image")));
-            this.btnReadPw1.Location = new System.Drawing.Point(342, 58);
-            this.btnReadPw1.Name = "btnReadPw1";
-            this.btnReadPw1.Size = new System.Drawing.Size(53, 49);
-            this.btnReadPw1.TabIndex = 9;
-            this.btnReadPw1.UseVisualStyleBackColor = false;
-            this.btnReadPw1.Click += new System.EventHandler(this.btnReadPw1_Click_1);
-            // 
-            // txtPin
-            // 
-            this.txtPin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPin.Depth = 0;
-            this.txtPin.Enabled = false;
-            this.txtPin.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtPin.Hint = "Pin";
-            this.txtPin.LeadingIcon = ((System.Drawing.Image)(resources.GetObject("txtPin.LeadingIcon")));
-            this.txtPin.Location = new System.Drawing.Point(3, 109);
-            this.txtPin.MaxLength = 50;
-            this.txtPin.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtPin.Multiline = false;
-            this.txtPin.Name = "txtPin";
-            this.txtPin.Size = new System.Drawing.Size(337, 50);
-            this.txtPin.TabIndex = 3;
-            this.txtPin.Text = "";
-            this.txtPin.TrailingIcon = null;
             // 
             // fQuenMatKhau
             // 
