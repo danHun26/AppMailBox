@@ -126,12 +126,14 @@ namespace AppMailBox
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(56, 150);
+            this.label3.Location = new System.Drawing.Point(16, 177);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(215, 80);
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label3.Size = new System.Drawing.Size(264, 60);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Hộp thư là điểm đến mà các \r\nthư điện tử được gửi đến. Nó\r\ntương đương với một hộ" +
-    "p thư \r\ntrong hệ thống bưu điện.";
+            this.label3.Text = "The mailbox is the destination where\r\nthe email is sent. It equivalent to a \r\nmai" +
+    "lbox in the postal system. ";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
             // 
             // pictureBox3

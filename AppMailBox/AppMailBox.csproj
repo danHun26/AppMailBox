@@ -85,6 +85,7 @@
     <Compile Include="fDangNhap.Designer.cs">
       <DependentUpon>fDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="fFeedback.cs" />
     <Compile Include="fMail.cs">
       <SubType>Form</SubType>
     </Compile>
