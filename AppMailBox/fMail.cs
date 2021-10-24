@@ -54,6 +54,7 @@ namespace AppMailBox
                         {
                             if (cmbEmail.Text == item.MATKHAU_MAIL.USERNAME_MAIL.ToString())
                             {
+                                this.idDSMail = 0;
                                 temp = 1;
                                 fSendMail fsm = new fSendMail(item.MATKHAU_MAIL.DOMAIN_MAIL.DOMAIN, item.MATKHAU_MAIL.DOMAIN_MAIL.PORT_MAIL,
                                                             item.MATKHAU_MAIL.USERNAME_MAIL, item.MATKHAU_MAIL.PASSWORD_MAIL,
@@ -115,6 +116,7 @@ namespace AppMailBox
                                 this.idDSMail = item.id;
                                 string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
                                 wbMail.Navigate(new System.Uri($"{localData}\\{item.NOIDUNG_MAIL.CONTENT_MAIL}"));
+                                dtpMail.Value = item.THOIGIAN_GUI != null ? Convert.ToDateTime(item.THOIGIAN_GUI) : DateTime.Now;
                             }
                         }
                     }
@@ -808,6 +810,7 @@ namespace AppMailBox
                                 db.SubmitChanges();
                                 loadLocalButton(sender, e);
                                 temp = 0;
+                                this.idDSMail = 0;
                                 break;
                             }
                             else if (item.id == this.idDSMail && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true) temp = 1;
@@ -852,6 +855,7 @@ namespace AppMailBox
                                 db.SubmitChanges();
                                 loadLocalButton(sender, e);
                                 temp = 0;
+                                this.idDSMail = 0;
                                 break;
                             }
                             if (item.id == this.idDSMail
@@ -894,7 +898,7 @@ namespace AppMailBox
 
         //Sự kiện hoàn nguên
         private void btnBack_Click(object sender, EventArgs e)
-        {          
+        {
             if (this.savaLocal == "Starred")
             {
                 try
@@ -907,12 +911,13 @@ namespace AppMailBox
                             if (item.id == this.idDSMail
                                 && item.NOIDUNG_MAIL.TRANG_THAI.DANHDAU == true)
                             {
+                                this.idDSMail = 0;
                                 statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
                                 statusMail.DANHDAU = false;
                                 db.SubmitChanges();
-                                loadLocalButton(sender, e);     
+                                loadLocalButton(sender, e);
                                 break;
-                            } 
+                            }
                         }
                         loadLocalButton(sender, e);
                     }
@@ -939,6 +944,7 @@ namespace AppMailBox
                         {
                             if (cmbEmail.Text == item.MATKHAU_MAIL.USERNAME_MAIL.ToString() && item.id == this.idDSMail)
                             {
+                                this.idDSMail = 0;
                                 fSendMail fsm = new fSendMail(item.MATKHAU_MAIL.DOMAIN_MAIL.DOMAIN, item.MATKHAU_MAIL.DOMAIN_MAIL.PORT_MAIL,
                                                             item.MATKHAU_MAIL.USERNAME_MAIL, item.MATKHAU_MAIL.PASSWORD_MAIL,
                                                             item.NOIDUNG_MAIL.id, this.idPassLocal, 2);
@@ -975,6 +981,7 @@ namespace AppMailBox
                         if (item.id == this.idDSMail
                             && item.NOIDUNG_MAIL.TRANG_THAI.XOATHU == true)
                         {
+                            this.idDSMail = 0;
                             statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
                             statusMail.XOATHU = false;
                             db.SubmitChanges();
@@ -982,7 +989,7 @@ namespace AppMailBox
                             break;
                         }
                     }
-                    loadLocalButton(sender, e);
+                    btnGarbageCan_Click(sender, e);
                 }
             }
             catch (Exception)
@@ -1004,6 +1011,39 @@ namespace AppMailBox
             DialogResult check = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (check == DialogResult.Yes)
                 this.Close();
+        }
+
+        //Hiện thông tin cả nhóm
+        private void btnContact_Click(object sender, EventArgs e)
+        {
+            string content =
+                "Thông tin liên lạc nhóm phát triển MailBox" + System.Environment.NewLine +
+                "   Thành viên 1: (Nhóm trưởng)" + System.Environment.NewLine +
+                "\tHọ và tên: Đào Minh Huân" + System.Environment.NewLine +
+                "\tMSSV: 1811770039" + System.Environment.NewLine +
+                "\tLớp: 18DATA1" + System.Environment.NewLine +
+                "   Thành viên 2:" + System.Environment.NewLine +
+                "\tHọ và tên: Trần Văn Phương Nam" + System.Environment.NewLine +
+                "\tMSSV: 1811770076" + System.Environment.NewLine +
+                "\tLớp: 18DATA1" + System.Environment.NewLine +
+                "   Thành viên 3:" + System.Environment.NewLine +
+                "\tHọ và tên: Trần Hữu Toàn" + System.Environment.NewLine +
+                "\tMSSV: 1811770093" + System.Environment.NewLine +
+                "\tLớp: 18DATA1" + System.Environment.NewLine +
+                "   Thành viên 4:" + System.Environment.NewLine +
+                "\tHọ và tên: Nguyễn Quang Khang" + System.Environment.NewLine +
+                "\tMSSV: 1811770017" + System.Environment.NewLine +
+                "\tLớp: 18DATA1";
+            MessageBox.Show(content, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        //Sự kiện About
+        private void btnVersion_Click(object sender, EventArgs e)
+        {
+            fAbout fSM = new fAbout(cmbEmail.Text, this.idPassLocal);
+            this.Hide();
+            fSM.ShowDialog();
+            this.Close();
         }
     }
 }

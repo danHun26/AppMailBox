@@ -141,7 +141,7 @@ namespace AppMailBox
                             {
                                 Directory.CreateDirectory(localData);
                             }
-                            string contentMailHtml = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>" 
+                            string contentMailHtml = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>"
                                 + System.Environment.NewLine
                                 + System.Environment.NewLine
                                 + rTxtContent.Text;
@@ -236,7 +236,7 @@ namespace AppMailBox
         //Thoát soạn mail
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (txtPathAttach.Text == "" && txtToMail.Text == "" && rTxtContent.Text == "")
+            if (txtPathAttach.Text == "" && rTxtContent.Text == "")
             {
                 fMail fSM = new fMail(this.userMailAcc, this.idPassLocal);
                 this.Hide();
@@ -248,6 +248,8 @@ namespace AppMailBox
                 DialogResult check = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (check == DialogResult.Yes)
                 {
+                    if (this.classifyMail != 2)
+                        lưuThưToolStripMenuItem_Click(sender, e);
                     fMail fSM = new fMail(this.userMailAcc, this.idPassLocal);
                     this.Hide();
                     fSM.ShowDialog();
@@ -319,7 +321,7 @@ namespace AppMailBox
                             Directory.CreateDirectory(localData);
                         }
                         string contentMailHtml = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>"
-                            + System.Environment.NewLine 
+                            + System.Environment.NewLine
                             + System.Environment.NewLine
                             + rTxtContent.Text;
                         string filename = tempidContent.ToString() + ".html";
@@ -351,7 +353,7 @@ namespace AppMailBox
                         fSendMail_Load(sender, e);
                     }
                 }
-                else
+                else if (classifyMail == 1)
                 {
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
@@ -384,6 +386,80 @@ namespace AppMailBox
                         fSendMail_Load(sender, e);
                     }
                 }
+                //else
+                //{
+                //    //Lưu vào database
+                //    using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                //    {
+                //        int tempIDNDMail = 0;
+                //        int tempIDStatus = 0;
+
+                //        DANHSACH_MAIL dsMail = new DANHSACH_MAIL();
+                //        NOIDUNG_MAIL ndMail = new NOIDUNG_MAIL();
+                //        TRANG_THAI status = new TRANG_THAI();
+
+                //        //TRẠNG THÁI
+                //        status.DANHDAU = false;
+                //        status.XOATHU = false;
+                //        status.STATUS_MAIL = true;
+                //        status.SEND_RECEIVE = false;
+                //        status.UPDATE_TIME_MAIL = DateTime.Now.ToLocalTime();
+                //        db.TRANG_THAIs.InsertOnSubmit(status);
+                //        db.SubmitChanges();
+
+                //        //NỘI DUNG MAIL
+                //        ndMail.FROM_MAIL = txtFromMail.Text.ToLower();
+                //        ndMail.TO_MAIL = txtToMail.Text.ToLower();
+                //        ndMail.SUBJECT_MAIL = tempSub;
+
+                //        int tempidContent = 0;
+                //        foreach (var item in db.NOIDUNG_MAILs.ToList())
+                //        {
+                //            if (tempidContent < item.id)
+                //            {
+                //                tempidContent = item.id;
+                //            }
+                //        }
+                //        tempidContent++;
+                //        //Tạo nơi chứa
+                //        string localData = string.Format("{0}\\DataContentEmail", Directory.GetCurrentDirectory());
+                //        if (!Directory.Exists(localData))
+                //        {
+                //            Directory.CreateDirectory(localData);
+                //        }
+                //        string contentMailHtml = "<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>"
+                //            + System.Environment.NewLine
+                //            + System.Environment.NewLine
+                //            + rTxtContent.Text;
+                //        string filename = tempidContent.ToString() + ".html";
+                //        File.WriteAllText($"{localData}\\{filename}", contentMailHtml);
+
+                //        ndMail.PATH_ATTACH = txtPathAttach.Text;
+                //        foreach (var item in db.TRANG_THAIs.ToList())
+                //        {
+                //            if (tempIDStatus < item.id)
+                //                tempIDStatus = item.id;
+                //            ndMail.FK_id_TRANG_THAI = tempIDStatus;
+                //        }
+                //        db.NOIDUNG_MAILs.InsertOnSubmit(ndMail);
+                //        db.SubmitChanges();
+
+                //        //DANH SÁCH MAIL
+                //        dsMail.THOIGIAN_GUI = DateTime.Now.ToLocalTime();
+                //        dsMail.FK_id_MATKHAU_MAIL = this.idpassMail;
+                //        foreach (var item in db.NOIDUNG_MAILs.ToList())
+                //        {
+                //            if (tempIDNDMail < item.id)
+                //                tempIDNDMail = item.id;
+                //            dsMail.FK_id_NOIDUNG_MAIL = tempIDNDMail;
+                //        }
+                //        db.DANHSACH_MAILs.InsertOnSubmit(dsMail);
+                //        db.SubmitChanges();
+                //        MessageBox.Show("Lưu thư nháp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //        fSendMail_Load(sender, e);
+                //    }
+                //}
             }
             catch (Exception)
             {
@@ -502,7 +578,7 @@ namespace AppMailBox
                                 rTxtContent.Text = "";
                             }
                         }
-                    }  
+                    }
                 }
             }
             catch (Exception)

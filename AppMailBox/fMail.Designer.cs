@@ -61,13 +61,13 @@ namespace AppMailBox
             this.wbMail = new System.Windows.Forms.WebBrowser();
             this.dtpMail = new System.Windows.Forms.DateTimePicker();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnRecovery = new System.Windows.Forms.Button();
-            this.btnDeleteAll = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.dgvListMail = new System.Windows.Forms.DataGridView();
             this.drvID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.drvTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.drvSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnDeleteAll = new System.Windows.Forms.Button();
+            this.btnRecovery = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -76,8 +76,8 @@ namespace AppMailBox
             this.tabHelp.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListMail)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGarbageCan
@@ -375,7 +375,7 @@ namespace AppMailBox
             this.btnNewMail.Name = "btnNewMail";
             this.btnNewMail.Size = new System.Drawing.Size(212, 50);
             this.btnNewMail.TabIndex = 1;
-            this.btnNewMail.Text = "New Mail / resend mail";
+            this.btnNewMail.Text = "New Mail / Resend mail";
             this.btnNewMail.UseVisualStyleBackColor = true;
             this.btnNewMail.Click += new System.EventHandler(this.btnNewMail_Click);
             // 
@@ -452,6 +452,7 @@ namespace AppMailBox
             this.btnVersion.TabIndex = 3;
             this.btnVersion.Text = "About MailBox";
             this.btnVersion.UseVisualStyleBackColor = true;
+            this.btnVersion.Click += new System.EventHandler(this.btnVersion_Click);
             // 
             // btnContact
             // 
@@ -464,6 +465,7 @@ namespace AppMailBox
             this.btnContact.TabIndex = 1;
             this.btnContact.Text = "Contact";
             this.btnContact.UseVisualStyleBackColor = true;
+            this.btnContact.Click += new System.EventHandler(this.btnContact_Click);
             // 
             // btnReport
             // 
@@ -515,56 +517,6 @@ namespace AppMailBox
             this.panel4.Size = new System.Drawing.Size(458, 475);
             this.panel4.TabIndex = 9;
             // 
-            // btnRecovery
-            // 
-            this.btnRecovery.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnRecovery.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnRecovery.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnRecovery.Enabled = false;
-            this.btnRecovery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRecovery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecovery.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRecovery.Image = ((System.Drawing.Image)(resources.GetObject("btnRecovery.Image")));
-            this.btnRecovery.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecovery.Location = new System.Drawing.Point(216, 0);
-            this.btnRecovery.Name = "btnRecovery";
-            this.btnRecovery.Size = new System.Drawing.Size(121, 50);
-            this.btnRecovery.TabIndex = 19;
-            this.btnRecovery.Text = "Recovery";
-            this.btnRecovery.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRecovery.UseVisualStyleBackColor = false;
-            this.btnRecovery.Click += new System.EventHandler(this.btnRecovery_Click);
-            // 
-            // btnDeleteAll
-            // 
-            this.btnDeleteAll.BackColor = System.Drawing.Color.Maroon;
-            this.btnDeleteAll.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDeleteAll.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDeleteAll.Enabled = false;
-            this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDeleteAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteAll.Image")));
-            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteAll.Location = new System.Drawing.Point(337, 0);
-            this.btnDeleteAll.Name = "btnDeleteAll";
-            this.btnDeleteAll.Size = new System.Drawing.Size(121, 50);
-            this.btnDeleteAll.TabIndex = 18;
-            this.btnDeleteAll.Text = "Delete all";
-            this.btnDeleteAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDeleteAll.UseVisualStyleBackColor = false;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnRecovery);
-            this.panel5.Controls.Add(this.btnDeleteAll);
-            this.panel5.Controls.Add(this.lTotal);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 425);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(458, 50);
-            this.panel5.TabIndex = 16;
-            // 
             // dgvListMail
             // 
             this.dgvListMail.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -599,6 +551,52 @@ namespace AppMailBox
             this.drvSubject.HeaderText = "Subject";
             this.drvSubject.Name = "drvSubject";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnRecovery);
+            this.panel5.Controls.Add(this.btnDeleteAll);
+            this.panel5.Controls.Add(this.lTotal);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 425);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(458, 50);
+            this.panel5.TabIndex = 16;
+            // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.BackColor = System.Drawing.Color.Maroon;
+            this.btnDeleteAll.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeleteAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteAll.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteAll.Image")));
+            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteAll.Location = new System.Drawing.Point(343, 0);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(115, 50);
+            this.btnDeleteAll.TabIndex = 18;
+            this.btnDeleteAll.Text = "Delete all";
+            this.btnDeleteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDeleteAll.UseVisualStyleBackColor = false;
+            // 
+            // btnRecovery
+            // 
+            this.btnRecovery.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnRecovery.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRecovery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRecovery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecovery.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRecovery.Image = ((System.Drawing.Image)(resources.GetObject("btnRecovery.Image")));
+            this.btnRecovery.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRecovery.Location = new System.Drawing.Point(228, 0);
+            this.btnRecovery.Name = "btnRecovery";
+            this.btnRecovery.Size = new System.Drawing.Size(115, 50);
+            this.btnRecovery.TabIndex = 19;
+            this.btnRecovery.Text = "Restore";
+            this.btnRecovery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRecovery.UseVisualStyleBackColor = false;
+            this.btnRecovery.Click += new System.EventHandler(this.btnRecovery_Click);
+            // 
             // fMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,9 +619,9 @@ namespace AppMailBox
             this.tabHelp.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListMail)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListMail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -644,8 +642,6 @@ namespace AppMailBox
         private MaterialSkin.Controls.MaterialLabel lTotal;
         private System.Windows.Forms.Button btnAddEmail;
         private System.Windows.Forms.WebBrowser wbMail;
-        private System.Windows.Forms.Button btnDeleteAll;
-        private System.Windows.Forms.Button btnRecovery;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabHome;
         private System.Windows.Forms.Button btnSendReceive;
@@ -667,5 +663,7 @@ namespace AppMailBox
         private System.Windows.Forms.DataGridViewTextBoxColumn drvID;
         private System.Windows.Forms.DataGridViewTextBoxColumn drvTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn drvSubject;
+        private System.Windows.Forms.Button btnDeleteAll;
+        private System.Windows.Forms.Button btnRecovery;
     }
 }
