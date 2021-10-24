@@ -85,7 +85,12 @@
     <Compile Include="fDangNhap.Designer.cs">
       <DependentUpon>fDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="fFeedback.cs" />
+    <Compile Include="fFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fFeedback.Designer.cs">
+      <DependentUpon>fFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="fMail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fDangNhap.resx">
       <DependentUpon>fDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fFeedback.resx">
+      <DependentUpon>fFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMail.resx">
       <DependentUpon>fMail.cs</DependentUpon>
@@ -234,6 +242,7 @@
     <Content Include="icon\mail-delete.png" />
     <Content Include="icon\mail.ico" />
     <Content Include="icon\mailbox.png" />
+    <Content Include="icon\mailFB.png" />
     <Content Include="icon\new-email.png" />
     <Content Include="icon\padlock.png" />
     <Content Include="icon\paper-plane.png" />
@@ -256,6 +265,9 @@
     <Content Include="icon\sql-server.png" />
     <Content Include="icon\star %281%29.png" />
     <Content Include="icon\star %282%29.png" />
+    <Content Include="icon\star %283%29.png" />
+    <Content Include="icon\star %284%29.png" />
+    <Content Include="icon\star.png" />
     <Content Include="icon\them.png" />
     <Content Include="icon\tomail.png" />
     <Content Include="icon\trash.png" />

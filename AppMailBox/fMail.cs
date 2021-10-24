@@ -23,14 +23,14 @@ namespace AppMailBox
             InitializeComponent();
         }
 
-        //Nhận id mật khẩu local [AddMail]
+        //Nhận id mật khẩu local
         public fMail(int idPassLocal) : this()
         {
             this.idPassLocal = idPassLocal;
             this.tempCmbMail = this.idPassLocal;
         }
 
-        //Nhận lại tên user trước đó [SendMail]
+        //Nhận lại tên user trước đó
         public fMail(string cmbUserNameEmail, int idPassLocal) : this()
         {
             cmbEmail.Text = cmbUserNameEmail;
@@ -1044,6 +1044,31 @@ namespace AppMailBox
             this.Hide();
             fSM.ShowDialog();
             this.Close();
+        }
+
+        //Sự kiện Feedback
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using(dbMailBoxDataContext db = new dbMailBoxDataContext())
+                {
+                    foreach (var item in db.MATKHAU_MAILs.ToList())
+                    {
+                        if (cmbEmail.Text == item.USERNAME_MAIL)
+                        {
+                            fFeedback fSM = new fFeedback(item.USERNAME_MAIL, item.PASSWORD_MAIL, this.idPassLocal, item.DOMAIN_MAIL.DOMAIN, item.DOMAIN_MAIL.PORT_MAIL);
+                            this.Hide();
+                            fSM.ShowDialog();
+                            this.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

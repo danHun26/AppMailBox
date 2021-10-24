@@ -66,8 +66,8 @@ namespace AppMailBox
             this.drvTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.drvSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnDeleteAll = new System.Windows.Forms.Button();
             this.btnRecovery = new System.Windows.Forms.Button();
+            this.btnDeleteAll = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -478,6 +478,7 @@ namespace AppMailBox
             this.btnReport.TabIndex = 2;
             this.btnReport.Text = "Feedback";
             this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panel3
             // 
@@ -562,23 +563,6 @@ namespace AppMailBox
             this.panel5.Size = new System.Drawing.Size(458, 50);
             this.panel5.TabIndex = 16;
             // 
-            // btnDeleteAll
-            // 
-            this.btnDeleteAll.BackColor = System.Drawing.Color.Maroon;
-            this.btnDeleteAll.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDeleteAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteAll.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteAll.Image")));
-            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteAll.Location = new System.Drawing.Point(343, 0);
-            this.btnDeleteAll.Name = "btnDeleteAll";
-            this.btnDeleteAll.Size = new System.Drawing.Size(115, 50);
-            this.btnDeleteAll.TabIndex = 18;
-            this.btnDeleteAll.Text = "Delete all";
-            this.btnDeleteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDeleteAll.UseVisualStyleBackColor = false;
-            // 
             // btnRecovery
             // 
             this.btnRecovery.BackColor = System.Drawing.Color.DarkGreen;
@@ -596,6 +580,23 @@ namespace AppMailBox
             this.btnRecovery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRecovery.UseVisualStyleBackColor = false;
             this.btnRecovery.Click += new System.EventHandler(this.btnRecovery_Click);
+            // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.BackColor = System.Drawing.Color.Maroon;
+            this.btnDeleteAll.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeleteAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteAll.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteAll.Image")));
+            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteAll.Location = new System.Drawing.Point(343, 0);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(115, 50);
+            this.btnDeleteAll.TabIndex = 18;
+            this.btnDeleteAll.Text = "Delete all";
+            this.btnDeleteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDeleteAll.UseVisualStyleBackColor = false;
             // 
             // fMail
             // 
