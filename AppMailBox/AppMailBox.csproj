@@ -109,6 +109,12 @@
     <Compile Include="fSendMail.Designer.cs">
       <DependentUpon>fSendMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="fMyAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMyAccount.Designer.cs">
+      <DependentUpon>fMyAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fAbout.resx">
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fSendMail.resx">
       <DependentUpon>fSendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMyAccount.resx">
+      <DependentUpon>fMyAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -249,6 +258,8 @@
     <Content Include="icon\phone.png" />
     <Content Include="icon\pin-number.png" />
     <Content Include="icon\plus.png" />
+    <Content Include="icon\profile %281%29.png" />
+    <Content Include="icon\profile %282%29.png" />
     <Content Include="icon\receive.png" />
     <Content Include="icon\register.ico" />
     <Content Include="icon\reply %281%29.png" />

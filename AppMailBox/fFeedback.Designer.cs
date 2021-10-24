@@ -34,6 +34,9 @@ namespace AppMailBox
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSendFB = new System.Windows.Forms.Button();
+            this.rtxFeedback = new System.Windows.Forms.RichTextBox();
             this.btnS5 = new System.Windows.Forms.Button();
             this.btnS4 = new System.Windows.Forms.Button();
             this.btnS3 = new System.Windows.Forms.Button();
@@ -41,9 +44,6 @@ namespace AppMailBox
             this.btnS1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.rtxFeedback = new System.Windows.Forms.RichTextBox();
-            this.btnSendFB = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,7 @@ namespace AppMailBox
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(421, 54);
             this.panel1.TabIndex = 0;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // label2
             // 
@@ -70,6 +71,7 @@ namespace AppMailBox
             this.label2.Size = new System.Drawing.Size(231, 36);
             this.label2.TabIndex = 1;
             this.label2.Text = "Your Feedback";
+            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // label1
             // 
@@ -83,6 +85,7 @@ namespace AppMailBox
             this.label1.Size = new System.Drawing.Size(150, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "MailBox   ";
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // panel2
             // 
@@ -101,6 +104,42 @@ namespace AppMailBox
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(421, 357);
             this.panel2.TabIndex = 1;
+            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
+            this.btnClose.Location = new System.Drawing.Point(309, 285);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(100, 30);
+            this.btnClose.TabIndex = 9;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSendFB
+            // 
+            this.btnSendFB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
+            this.btnSendFB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSendFB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendFB.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSendFB.Location = new System.Drawing.Point(203, 285);
+            this.btnSendFB.Name = "btnSendFB";
+            this.btnSendFB.Size = new System.Drawing.Size(100, 30);
+            this.btnSendFB.TabIndex = 8;
+            this.btnSendFB.Text = "Send";
+            this.btnSendFB.UseVisualStyleBackColor = false;
+            this.btnSendFB.Click += new System.EventHandler(this.btnSendFB_Click);
+            // 
+            // rtxFeedback
+            // 
+            this.rtxFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxFeedback.Location = new System.Drawing.Point(12, 182);
+            this.rtxFeedback.Name = "rtxFeedback";
+            this.rtxFeedback.Size = new System.Drawing.Size(397, 96);
+            this.rtxFeedback.TabIndex = 7;
+            this.rtxFeedback.Text = "";
             // 
             // btnS5
             // 
@@ -162,6 +201,7 @@ namespace AppMailBox
             this.label4.Size = new System.Drawing.Size(207, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "What is your opinion of this page?";
+            this.label4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // label3
             // 
@@ -172,41 +212,7 @@ namespace AppMailBox
             this.label3.Size = new System.Drawing.Size(336, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "We would like your feedback to improve out application";
-            // 
-            // rtxFeedback
-            // 
-            this.rtxFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxFeedback.Location = new System.Drawing.Point(12, 182);
-            this.rtxFeedback.Name = "rtxFeedback";
-            this.rtxFeedback.Size = new System.Drawing.Size(397, 96);
-            this.rtxFeedback.TabIndex = 7;
-            this.rtxFeedback.Text = "";
-            // 
-            // btnSendFB
-            // 
-            this.btnSendFB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
-            this.btnSendFB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSendFB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendFB.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSendFB.Location = new System.Drawing.Point(203, 285);
-            this.btnSendFB.Name = "btnSendFB";
-            this.btnSendFB.Size = new System.Drawing.Size(100, 30);
-            this.btnSendFB.TabIndex = 8;
-            this.btnSendFB.Text = "Send";
-            this.btnSendFB.UseVisualStyleBackColor = false;
-            this.btnSendFB.Click += new System.EventHandler(this.btnSendFB_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
-            this.btnClose.Location = new System.Drawing.Point(309, 285);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 30);
-            this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // fFeedback
             // 

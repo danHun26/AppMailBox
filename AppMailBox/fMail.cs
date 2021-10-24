@@ -1051,13 +1051,22 @@ namespace AppMailBox
         {
             try
             {
-                using(dbMailBoxDataContext db = new dbMailBoxDataContext())
+                string Email_Local = "";
+                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                 {
+                    foreach (var item in db.THONGTIN_CLIENTs.ToList())
+                    {
+                        if (this.idPassLocal == item.FK_id_MATKHAU_LOCAL)
+                        {
+                            Email_Local = item.EMAIL;
+                        }
+                    }
                     foreach (var item in db.MATKHAU_MAILs.ToList())
                     {
                         if (cmbEmail.Text == item.USERNAME_MAIL)
                         {
-                            fFeedback fSM = new fFeedback(item.USERNAME_MAIL, item.PASSWORD_MAIL, this.idPassLocal, item.DOMAIN_MAIL.DOMAIN, item.DOMAIN_MAIL.PORT_MAIL);
+                            fFeedback fSM = new fFeedback(item.USERNAME_MAIL, item.PASSWORD_MAIL, 
+                                this.idPassLocal, item.DOMAIN_MAIL.DOMAIN, item.DOMAIN_MAIL.PORT_MAIL, Email_Local);
                             this.Hide();
                             fSM.ShowDialog();
                             this.Close();
@@ -1069,6 +1078,15 @@ namespace AppMailBox
             {
                 MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ nhà phát triển.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        //Sự kiện xem thông tin cá nhân
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            fMyAccount fSM = new fMyAccount(cmbEmail.Text, this.idPassLocal);
+            this.Hide();
+            fSM.ShowDialog();
+            this.Close();
         }
     }
 }

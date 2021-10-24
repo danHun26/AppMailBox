@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace AppMailBox
         private string userMailAccAdmin = "appmailboxnhom8@gmail.com";
         private string serverMail = "";
         private int portServerMail = 0;
+        private string Email_Local = "";
 
         public fFeedback()
         {
@@ -27,14 +29,21 @@ namespace AppMailBox
         }
 
         public fFeedback(string userMailAcc, string passMailAcc,  
-            int idPassLocal, string serverMail, int portServerMail) : this()
+            int idPassLocal, string serverMail, int portServerMail, string Email_Local) : this()
         {
             this.userMailAcc = userMailAcc;
             this.passMailAcc = Eramake.eCryptography.Decrypt(passMailAcc);
             this.idPassLocal = idPassLocal;
             this.serverMail = serverMail;
             this.portServerMail = portServerMail;
+            this.Email_Local = Email_Local;
         }
+
+        //Di chuyển form
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void btnSendFB_Click(object sender, EventArgs e)
         {
@@ -49,7 +58,7 @@ namespace AppMailBox
                         if (item.USERNAME_MAIL == this.userMailAcc)
                         {
                             contentMail = "Ngày gửi báo cáo:" + DateTime.Now.ToLocalTime() + System.Environment.NewLine +
-                                "Khách hàng: " + item.USERNAME_MAIL + System.Environment.NewLine +
+                                "Khách hàng: " + this.Email_Local + System.Environment.NewLine +
                                 "Nội dung phản hồi: " + rtxFeedback.Text + " " + System.Environment.NewLine +
                                 "Khách hàng đánh giá: " + this.star;
                         }
@@ -154,6 +163,13 @@ namespace AppMailBox
             btnS3.BackColor = Color.FloralWhite;
             btnS4.BackColor = Color.FloralWhite;
             btnS5.BackColor = Color.FloralWhite;
+        }
+
+        //Sự kiên di chuyển form
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }
