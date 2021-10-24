@@ -345,9 +345,9 @@ namespace AppMailBox
             this.btnArchiveMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArchiveMail.Image = ((System.Drawing.Image)(resources.GetObject("btnArchiveMail.Image")));
             this.btnArchiveMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArchiveMail.Location = new System.Drawing.Point(388, 3);
+            this.btnArchiveMail.Location = new System.Drawing.Point(404, 3);
             this.btnArchiveMail.Name = "btnArchiveMail";
-            this.btnArchiveMail.Size = new System.Drawing.Size(153, 50);
+            this.btnArchiveMail.Size = new System.Drawing.Size(137, 50);
             this.btnArchiveMail.TabIndex = 3;
             this.btnArchiveMail.Text = "Starred";
             this.btnArchiveMail.UseVisualStyleBackColor = true;
@@ -360,9 +360,9 @@ namespace AppMailBox
             this.btnDeleteMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDeleteMail.Location = new System.Drawing.Point(224, 3);
             this.btnDeleteMail.Name = "btnDeleteMail";
-            this.btnDeleteMail.Size = new System.Drawing.Size(158, 50);
+            this.btnDeleteMail.Size = new System.Drawing.Size(174, 50);
             this.btnDeleteMail.TabIndex = 2;
-            this.btnDeleteMail.Text = "Delete Mail";
+            this.btnDeleteMail.Text = "Move to Trash";
             this.btnDeleteMail.UseVisualStyleBackColor = true;
             this.btnDeleteMail.Click += new System.EventHandler(this.btnDeleteMail_Click);
             // 
@@ -595,9 +595,10 @@ namespace AppMailBox
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(115, 50);
             this.btnDeleteAll.TabIndex = 18;
-            this.btnDeleteAll.Text = "Delete all";
+            this.btnDeleteAll.Text = "Delete ";
             this.btnDeleteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDeleteAll.UseVisualStyleBackColor = false;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
             // 
             // fMail
             // 

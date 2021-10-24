@@ -233,6 +233,9 @@ namespace AppMailBox
                             db.DANHSACH_MAILs.InsertOnSubmit(listMail);
                             db.SubmitChanges();
 
+                            //Xóa mail trên server
+                            //oClient.Delete(info);
+
                             countAddMail++;
                         }
                         else if (tempSyns == 1)
@@ -304,6 +307,9 @@ namespace AppMailBox
                             }
                             db.DANHSACH_MAILs.InsertOnSubmit(listMail);
                             db.SubmitChanges();
+
+                            //Xóa mail trên server
+                            //oClient.Delete(info);
 
                             tempSyns = 1;
                             countAddMail++;
@@ -1087,6 +1093,38 @@ namespace AppMailBox
             this.Hide();
             fSM.ShowDialog();
             this.Close();
+        }
+
+        //Delete All
+        private void btnDeleteAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (dbMailBoxDataContext db = new dbMailBoxDataContext())
+                {
+                    TRANG_THAI statusMail = new TRANG_THAI();
+                    foreach (var item in db.DANHSACH_MAILs.ToList())
+                    {
+                        if(this.idDSMail == item.id)
+                        {
+                            statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
+                        }
+                    }
+                    
+                    DialogResult check = MessageBox.Show("Thư này sẽ được xóa vĩnh viễn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (check == DialogResult.Yes)
+                    {
+                        db.TRANG_THAIs.DeleteOnSubmit(statusMail);
+                        db.SubmitChanges();
+                        MessageBox.Show("Bạn đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    btnGarbageCan_Click(sender, e);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra vui lòng liên hệ Admin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
