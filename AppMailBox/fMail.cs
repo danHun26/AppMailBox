@@ -350,7 +350,6 @@ namespace AppMailBox
                 {
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-
                         foreach (var item in db.MATKHAU_MAILs.ToList())
                         {
                             if (item.FK_id_MATKHAU_LOCAL == this.idPassLocal)
@@ -359,13 +358,11 @@ namespace AppMailBox
                                 cmbEmail.Text = item.USERNAME_MAIL;
                             }
                         }
-
+                        //btnInbox.BackColor = Color.LimeGreen;
+                        //btnReplyMail.Enabled = true;
+                        //btnInbox.FlatStyle = FlatStyle.Standard;
                         this.tempCmbMail = 0;
-                        btnInbox.BackColor = Color.LimeGreen;
-                        btnReplyMail.Enabled = true;
-                        btnInbox.FlatStyle = FlatStyle.Standard;
-
-                        btnSendReceive_Click(sender, e);
+                        //btnSendReceive_Click(sender, e);
 
                     }
                 }
