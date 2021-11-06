@@ -34,8 +34,8 @@ namespace AppMailBox
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lTime = new MaterialSkin.Controls.MaterialLabel();
             this.lForgotPW = new System.Windows.Forms.Label();
-            this.lTime = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassword = new MaterialSkin.Controls.MaterialTextBox();
             this.txtUsername = new MaterialSkin.Controls.MaterialTextBox();
@@ -73,8 +73,8 @@ namespace AppMailBox
             // panel2
             // 
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panel2.Controls.Add(this.lForgotPW);
             this.panel2.Controls.Add(this.lTime);
+            this.panel2.Controls.Add(this.lForgotPW);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtPassword);
             this.panel2.Controls.Add(this.txtUsername);
@@ -88,6 +88,20 @@ namespace AppMailBox
             this.panel2.TabIndex = 4;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
+            // lTime
+            // 
+            this.lTime.AutoSize = true;
+            this.lTime.Depth = 0;
+            this.lTime.Enabled = false;
+            this.lTime.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lTime.Location = new System.Drawing.Point(4, 3);
+            this.lTime.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lTime.Name = "lTime";
+            this.lTime.Size = new System.Drawing.Size(37, 19);
+            this.lTime.TabIndex = 10;
+            this.lTime.Text = "Time";
+            this.lTime.Click += new System.EventHandler(this.timer_Tick);
+            // 
             // lForgotPW
             // 
             this.lForgotPW.AutoSize = true;
@@ -99,17 +113,6 @@ namespace AppMailBox
             this.lForgotPW.TabIndex = 9;
             this.lForgotPW.Text = "Forgot your password?";
             this.lForgotPW.Click += new System.EventHandler(this.lForgotPW_Click);
-            // 
-            // lTime
-            // 
-            this.lTime.AutoSize = true;
-            this.lTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTime.Location = new System.Drawing.Point(3, 2);
-            this.lTime.Name = "lTime";
-            this.lTime.Size = new System.Drawing.Size(41, 18);
-            this.lTime.TabIndex = 8;
-            this.lTime.Text = "Time";
-            this.lTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // label2
             // 
@@ -214,12 +217,12 @@ namespace AppMailBox
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lForgotPW;
-        private System.Windows.Forms.Label lTime;
         private System.Windows.Forms.Label label2;
         private MaterialSkin.Controls.MaterialTextBox txtPassword;
         private MaterialSkin.Controls.MaterialTextBox txtUsername;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Timer timer;
+        private MaterialSkin.Controls.MaterialLabel lTime;
     }
 }

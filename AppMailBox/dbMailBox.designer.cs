@@ -54,7 +54,7 @@ namespace AppMailBox
     #endregion
 		
 		public dbMailBoxDataContext() : 
-				base(global::AppMailBox.Properties.Settings.Default.XAY_DUNG_MAIL_SERVERConnectionString, mappingSource)
+				base(global::AppMailBox.Properties.Settings.Default.XAY_DUNG_MAIL_SERVERConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

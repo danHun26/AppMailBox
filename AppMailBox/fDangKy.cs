@@ -20,6 +20,7 @@ namespace AppMailBox
         public fDangKy()
         {
             InitializeComponent();
+            timer.Start();
         }
 
         //Di chuyển form
@@ -191,7 +192,6 @@ namespace AppMailBox
         {
             lTime.Text = DateTime.Now.ToLongTimeString();
             lDate.Text = DateTime.Now.ToLongDateString();
-            timer.Start();
         }
 
         //Đi đến đang nhập

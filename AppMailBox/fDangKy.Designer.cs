@@ -181,6 +181,7 @@ namespace AppMailBox
             // 
             this.lTime.AutoSize = true;
             this.lTime.Depth = 0;
+            this.lTime.Enabled = false;
             this.lTime.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lTime.Location = new System.Drawing.Point(12, 524);
             this.lTime.MouseState = MaterialSkin.MouseState.HOVER;
@@ -194,6 +195,7 @@ namespace AppMailBox
             // 
             this.lDate.AutoSize = true;
             this.lDate.Depth = 0;
+            this.lDate.Enabled = false;
             this.lDate.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lDate.Location = new System.Drawing.Point(12, 543);
             this.lDate.MouseState = MaterialSkin.MouseState.HOVER;

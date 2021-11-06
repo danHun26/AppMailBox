@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="XAY_DUNG_MAIL_SERVER" Class="dbMailBoxDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-6B6ICSA\MSSQLSERVER02;Initial Catalog=XAY_DUNG_MAIL_SERVER;Integrated Security=True" SettingsObjectName="AppMailBox.Properties.Settings" SettingsPropertyName="XAY_DUNG_MAIL_SERVERConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-9BRI9GP\MSSQLSERVER02;Initial Catalog=XAY_DUNG_MAIL_SERVER;Integrated Security=True" SettingsObjectName="AppMailBox.Properties.Settings" SettingsPropertyName="XAY_DUNG_MAIL_SERVERConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DANHSACH_MAIL" Member="DANHSACH_MAILs">
     <Type Name="DANHSACH_MAIL">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

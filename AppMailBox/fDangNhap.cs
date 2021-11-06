@@ -10,6 +10,7 @@ namespace AppMailBox
         public fDangNhap()
         {
             InitializeComponent();
+            timer.Start();
         }
 
         //Di chuyển form
@@ -42,7 +43,6 @@ namespace AppMailBox
         private void timer_Tick(object sender, EventArgs e)
         {
             lTime.Text = DateTime.Now.ToLongTimeString();
-            timer.Start();
         }
 
         //Sự kiện di chuyên form

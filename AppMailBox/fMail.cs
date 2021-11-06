@@ -17,6 +17,7 @@ namespace AppMailBox
         private int idDSMail = 0;
         private string savaLocal = "";
         private int tempCmbMail = 0;
+        private string cmbUserNameEmail = "";
 
         public fMail()
         {
@@ -33,7 +34,7 @@ namespace AppMailBox
         //Nhận lại tên user trước đó
         public fMail(string cmbUserNameEmail, int idPassLocal) : this()
         {
-            cmbEmail.Text = cmbUserNameEmail;
+            this.cmbUserNameEmail = cmbUserNameEmail;
             this.idPassLocal = idPassLocal;
             this.tempCmbMail = this.idPassLocal;
         }
@@ -317,7 +318,15 @@ namespace AppMailBox
                     }
                 }
                 oClient.Quit();
-                MessageBox.Show($"Đồng bộ thêm {countAddMail} email mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (countAddMail != 0)
+                {
+                   MessageBox.Show($"Đồng bộ thêm {countAddMail} email mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Không có email mới gần đây.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+               
             }
             catch (Exception)
             {
@@ -341,6 +350,7 @@ namespace AppMailBox
                 {
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
+
                         foreach (var item in db.MATKHAU_MAILs.ToList())
                         {
                             if (item.FK_id_MATKHAU_LOCAL == this.idPassLocal)
@@ -349,8 +359,15 @@ namespace AppMailBox
                                 cmbEmail.Text = item.USERNAME_MAIL;
                             }
                         }
+
+                        this.tempCmbMail = 0;
+                        btnInbox.BackColor = Color.LimeGreen;
+                        btnReplyMail.Enabled = true;
+                        btnInbox.FlatStyle = FlatStyle.Standard;
+
+                        btnSendReceive_Click(sender, e);
+
                     }
-                    this.tempCmbMail = 0;
                 }
                 catch (Exception)
                 {
