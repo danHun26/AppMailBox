@@ -44,7 +44,7 @@ namespace AppMailBox
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
+            this.panel2.BackColor = System.Drawing.Color.Azure;
             this.panel2.Controls.Add(this.cbShowPass);
             this.panel2.Controls.Add(this.txtPassMail);
             this.panel2.Controls.Add(this.txtUserMail);
