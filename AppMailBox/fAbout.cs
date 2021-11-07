@@ -36,7 +36,7 @@ namespace AppMailBox
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-        
+
         //Sự kiện thoát
         private void btnExit_Click(object sender, System.EventArgs e)
         {

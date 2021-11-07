@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppMailBox
@@ -28,7 +23,7 @@ namespace AppMailBox
             InitializeComponent();
         }
 
-        public fFeedback(string userMailAcc, string passMailAcc,  
+        public fFeedback(string userMailAcc, string passMailAcc,
             int idPassLocal, string serverMail, int portServerMail, string Email_Local) : this()
         {
             this.userMailAcc = userMailAcc;
@@ -83,7 +78,7 @@ namespace AppMailBox
                 catch (Exception)
                 {
                     MessageBox.Show("Đã có sự cố xảy ra.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }  
+                }
             }
             catch (Exception)
             {

@@ -320,13 +320,13 @@ namespace AppMailBox
                 oClient.Quit();
                 if (countAddMail != 0)
                 {
-                   MessageBox.Show($"Đồng bộ thêm {countAddMail} email mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Đồng bộ thêm {countAddMail} email mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show($"Không có email mới gần đây.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-               
+
             }
             catch (Exception)
             {
@@ -1085,7 +1085,7 @@ namespace AppMailBox
                     {
                         if (cmbEmail.Text == item.USERNAME_MAIL)
                         {
-                            fFeedback fSM = new fFeedback(item.USERNAME_MAIL, item.PASSWORD_MAIL, 
+                            fFeedback fSM = new fFeedback(item.USERNAME_MAIL, item.PASSWORD_MAIL,
                                 this.idPassLocal, item.DOMAIN_MAIL.DOMAIN, item.DOMAIN_MAIL.PORT_MAIL, Email_Local);
                             this.Hide();
                             fSM.ShowDialog();
@@ -1119,12 +1119,12 @@ namespace AppMailBox
                     TRANG_THAI statusMail = new TRANG_THAI();
                     foreach (var item in db.DANHSACH_MAILs.ToList())
                     {
-                        if(this.idDSMail == item.id)
+                        if (this.idDSMail == item.id)
                         {
                             statusMail = db.TRANG_THAIs.Where(s => s.id == item.NOIDUNG_MAIL.TRANG_THAI.id).Single();
                         }
                     }
-                    
+
                     DialogResult check = MessageBox.Show("Thư này sẽ được xóa vĩnh viễn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (check == DialogResult.Yes)
                     {

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppMailBox
@@ -185,7 +180,7 @@ namespace AppMailBox
                     DataGridViewRow row = dgvDsEmail.Rows[e.RowIndex];
                     using (dbMailBoxDataContext db = new dbMailBoxDataContext())
                     {
-                        
+
                         foreach (var item in db.MATKHAU_MAILs.ToList())
                         {
                             if (item.USERNAME_MAIL == row.Cells[0].Value.ToString() && this.idPassLocal == item.FK_id_MATKHAU_LOCAL)
