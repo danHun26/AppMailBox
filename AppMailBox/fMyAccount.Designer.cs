@@ -34,6 +34,10 @@ namespace AppMailBox
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.dgvDsEmail = new System.Windows.Forms.DataGridView();
+            this.dgvEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvServerMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtFirstName = new MaterialSkin.Controls.MaterialTextBox();
             this.cmdSex = new MaterialSkin.Controls.MaterialComboBox();
             this.btnExit = new System.Windows.Forms.Button();
@@ -47,6 +51,7 @@ namespace AppMailBox
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDsEmail)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,6 +90,8 @@ namespace AppMailBox
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnRemove);
+            this.panel3.Controls.Add(this.dgvDsEmail);
             this.panel3.Controls.Add(this.txtFirstName);
             this.panel3.Controls.Add(this.cmdSex);
             this.panel3.Controls.Add(this.btnExit);
@@ -98,9 +105,47 @@ namespace AppMailBox
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 78);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(480, 357);
+            this.panel3.Size = new System.Drawing.Size(480, 532);
             this.panel3.TabIndex = 4;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemove.Location = new System.Drawing.Point(390, 497);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(78, 23);
+            this.btnRemove.TabIndex = 12;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // dgvDsEmail
+            // 
+            this.dgvDsEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDsEmail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDsEmail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvEmail,
+            this.dgvServerMail});
+            this.dgvDsEmail.Location = new System.Drawing.Point(12, 347);
+            this.dgvDsEmail.Name = "dgvDsEmail";
+            this.dgvDsEmail.Size = new System.Drawing.Size(456, 144);
+            this.dgvDsEmail.TabIndex = 11;
+            this.dgvDsEmail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDsEmail_CellClick);
+            // 
+            // dgvEmail
+            // 
+            this.dgvEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvEmail.HeaderText = "Email";
+            this.dgvEmail.Name = "dgvEmail";
+            // 
+            // dgvServerMail
+            // 
+            this.dgvServerMail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvServerMail.HeaderText = "Server Mail";
+            this.dgvServerMail.Name = "dgvServerMail";
             // 
             // txtFirstName
             // 
@@ -257,7 +302,7 @@ namespace AppMailBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 435);
+            this.ClientSize = new System.Drawing.Size(480, 610);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -271,6 +316,7 @@ namespace AppMailBox
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDsEmail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -291,5 +337,9 @@ namespace AppMailBox
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.DataGridView dgvDsEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvServerMail;
     }
 }

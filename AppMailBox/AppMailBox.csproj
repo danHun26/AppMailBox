@@ -182,6 +182,7 @@
     <Content Include="background\all-mail.png" />
     <Content Include="background\anh-background-cuc-dep_110341116.jpg" />
     <Content Include="background\customer.png" />
+    <Content Include="background\delete.png" />
     <Content Include="background\document.png" />
     <Content Include="background\draft.png" />
     <Content Include="background\garbage-can.png" />
