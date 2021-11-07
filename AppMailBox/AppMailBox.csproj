@@ -249,6 +249,7 @@
     <Content Include="icon\loginDN.ico" />
     <Content Include="icon\logout.png" />
     <Content Include="icon\luutru1.png" />
+    <Content Include="icon\mail %281%29.ico" />
     <Content Include="icon\mail-delete.png" />
     <Content Include="icon\mail.ico" />
     <Content Include="icon\mailbox.png" />
