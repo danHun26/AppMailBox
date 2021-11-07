@@ -85,7 +85,7 @@ namespace AppMailBox
             this.btnGarbageCan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
             this.btnGarbageCan.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGarbageCan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGarbageCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGarbageCan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGarbageCan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnGarbageCan.Image = ((System.Drawing.Image)(resources.GetObject("btnGarbageCan.Image")));
             this.btnGarbageCan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -104,7 +104,7 @@ namespace AppMailBox
             this.btnDrafts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
             this.btnDrafts.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDrafts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDrafts.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDrafts.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDrafts.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnDrafts.Image = ((System.Drawing.Image)(resources.GetObject("btnDrafts.Image")));
             this.btnDrafts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,7 +123,7 @@ namespace AppMailBox
             this.btnStarred.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
             this.btnStarred.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStarred.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnStarred.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStarred.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStarred.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnStarred.Image = ((System.Drawing.Image)(resources.GetObject("btnStarred.Image")));
             this.btnStarred.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -142,7 +142,7 @@ namespace AppMailBox
             this.btnAllMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
             this.btnAllMail.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAllMail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAllMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAllMail.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnAllMail.Image = ((System.Drawing.Image)(resources.GetObject("btnAllMail.Image")));
             this.btnAllMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -161,7 +161,7 @@ namespace AppMailBox
             this.btnOutbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
             this.btnOutbox.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnOutbox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOutbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOutbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOutbox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnOutbox.Image = ((System.Drawing.Image)(resources.GetObject("btnOutbox.Image")));
             this.btnOutbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -180,7 +180,7 @@ namespace AppMailBox
             this.btnInbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(26)))), ((int)(((byte)(74)))));
             this.btnInbox.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnInbox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnInbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInbox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnInbox.Image = ((System.Drawing.Image)(resources.GetObject("btnInbox.Image")));
             this.btnInbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
